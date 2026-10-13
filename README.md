@@ -39,6 +39,22 @@ Chat-style answers are hard to trust because you cannot see what they relied on.
 **Interface**
 - React and TypeScript single-page app with a research-plan panel, claims with citation chips, an evidence panel and “cited by” navigation back to claims.
 
+## See it in action
+
+The captures below come from the running application: a real Gemini answer over the bundled 41-document corpus.
+
+**1. Ask a research question.** The sidebar shows the connected backend and the active index (documents, passages and embedding model).
+
+![Landing view with the question composer, example questions and index status](docs/images/01-ask.png)
+
+**2. Inspect the research plan.** The question is classified and decomposed into sub-questions with their dependencies, and the evidence behind each is counted.
+
+![Research plan panel showing intent, complexity, strategy and sub-questions](docs/images/02-research-plan.png)
+
+**3. Follow every claim to its evidence.** Each claim carries a citation chip and a status. Opening a citation shows the retrieved passage, its authors, source link and ranking score, and which claims cite it.
+
+![Answer claims with citation chips next to the evidence panel showing the cited passage](docs/images/03-cited-answer.png)
+
 ## Architecture
 
 ```mermaid
