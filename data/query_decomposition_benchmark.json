@@ -1,0 +1,183 @@
+{
+  "benchmark_name": "query_decomposition_v1",
+  "version": "1.0",
+  "description": "Benchmark evaluation dataset for Query Intelligence, Intent Classification, Complexity Detection, and Decomposition.",
+  "queries": [
+    {
+      "id": "q01_factual_simple",
+      "query": "What is BM25?",
+      "expected_intent": "FACTUAL",
+      "expected_complexity": "SIMPLE",
+      "requires_decomposition": false,
+      "required_dimensions": ["bm25"],
+      "required_entities": ["bm25"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q02_factual_definition",
+      "query": "Define dense retrieval in neural search",
+      "expected_intent": "FACTUAL",
+      "expected_complexity": "SIMPLE",
+      "requires_decomposition": false,
+      "required_dimensions": ["dense retrieval", "neural search"],
+      "required_entities": ["dense retrieval"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q03_explanatory_mechanism",
+      "query": "How does reciprocal rank fusion work in hybrid search systems?",
+      "expected_intent": "EXPLANATORY",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["reciprocal rank fusion", "hybrid search", "mechanism"],
+      "required_entities": ["reciprocal rank fusion", "hybrid search"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q04_causal_dense_failure",
+      "query": "Why does dense retrieval struggle with exact keyword matching and out-of-vocabulary terms?",
+      "expected_intent": "CAUSAL",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["dense retrieval", "keyword matching", "out-of-vocabulary", "failure causes"],
+      "required_entities": ["dense retrieval"],
+      "required_constraints": ["limitations"],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q05_comparative_dense_vs_bm25",
+      "query": "Compare dense retrieval and BM25 for RAG systems, explain their strengths and weaknesses, and identify when each performs better.",
+      "expected_intent": "COMPARATIVE",
+      "expected_complexity": "COMPLEX",
+      "requires_decomposition": true,
+      "required_dimensions": ["dense retrieval", "bm25", "strengths and weaknesses", "trade-offs", "rag"],
+      "required_entities": ["dense retrieval", "bm25", "rag"],
+      "required_constraints": ["strengths", "limitations", "decision_criteria"],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q06_comparative_cross_vs_bi",
+      "query": "What are the trade-offs between cross-encoders and bi-encoders in terms of accuracy and latency?",
+      "expected_intent": "COMPARATIVE",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["cross-encoders", "bi-encoders", "accuracy", "latency", "trade-offs"],
+      "required_entities": ["cross-encoders", "bi-encoders"],
+      "required_constraints": ["trade-offs"],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q07_multipart_benefits_limitations",
+      "query": "How does RAG improve question answering and what are its primary limitations and failure modes?",
+      "expected_intent": "EXPLANATORY",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["rag benefits", "question answering", "limitations", "failure modes"],
+      "required_entities": ["rag"],
+      "required_constraints": ["limitations"],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q08_procedural_finetuning",
+      "query": "How to fine-tune an embedding model with hard negative mining for domain-specific retrieval?",
+      "expected_intent": "PROCEDURAL",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["fine-tune", "embedding model", "hard negative mining", "domain retrieval"],
+      "required_entities": ["embedding model"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q09_survey_architectures",
+      "query": "Comprehensive survey of retrieval augmented generation architectures and modular RAG patterns",
+      "expected_intent": "SURVEY",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["survey", "rag architectures", "modular rag", "patterns"],
+      "required_entities": ["rag"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q10_trend_recent_advances",
+      "query": "What are recent trends and state of the art advancements in neural reranking models in 2024?",
+      "expected_intent": "TREND",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["recent trends", "state of the art", "reranking", "2024"],
+      "required_entities": ["reranking"],
+      "required_constraints": [],
+      "required_time_constraints": ["2024", "recent"]
+    },
+    {
+      "id": "q11_multihop_evaluation",
+      "query": "Which retrieval benchmarks were used in the original Dense Passage Retrieval paper and how did ColBERT evaluate on them?",
+      "expected_intent": "MULTI_HOP",
+      "expected_complexity": "COMPLEX",
+      "requires_decomposition": true,
+      "required_dimensions": ["dense passage retrieval", "benchmarks", "colbert", "evaluation"],
+      "required_entities": ["dpr", "colbert"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q12_comparative_splade_colbert",
+      "query": "Compare SPLADE sparse representations and ColBERT late interaction for search latency and memory overhead.",
+      "expected_intent": "COMPARATIVE",
+      "expected_complexity": "COMPLEX",
+      "requires_decomposition": true,
+      "required_dimensions": ["splade", "colbert", "latency", "memory overhead", "comparison"],
+      "required_entities": ["splade", "colbert"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q13_causal_hallucination",
+      "query": "Why do large language models hallucinate when retrieved context contains conflicting factual claims?",
+      "expected_intent": "CAUSAL",
+      "expected_complexity": "MODERATE",
+      "requires_decomposition": true,
+      "required_dimensions": ["hallucination causes", "conflicting context", "llms"],
+      "required_entities": ["llms", "hallucination"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q14_trend_multimodal_rag",
+      "query": "What are the latest developments and emerging architectures in multimodal RAG for document understanding in 2025?",
+      "expected_intent": "TREND",
+      "expected_complexity": "COMPLEX",
+      "requires_decomposition": true,
+      "required_dimensions": ["latest developments", "multimodal rag", "document understanding", "2025"],
+      "required_entities": ["rag"],
+      "required_constraints": [],
+      "required_time_constraints": ["2025", "latest"]
+    },
+    {
+      "id": "q15_simple_qdrant",
+      "query": "What is Qdrant vector database?",
+      "expected_intent": "FACTUAL",
+      "expected_complexity": "SIMPLE",
+      "requires_decomposition": false,
+      "required_dimensions": ["qdrant", "vector database"],
+      "required_entities": ["qdrant"],
+      "required_constraints": [],
+      "required_time_constraints": []
+    },
+    {
+      "id": "q16_complex_hybrid_system",
+      "query": "How to design an enterprise hybrid search pipeline combining BM25, Qdrant dense vectors, and cross-encoder reranking, and what are the latency bottlenecks?",
+      "expected_intent": "PROCEDURAL",
+      "expected_complexity": "COMPLEX",
+      "requires_decomposition": true,
+      "required_dimensions": ["hybrid search design", "bm25", "qdrant", "cross-encoder reranking", "latency bottlenecks"],
+      "required_entities": ["bm25", "qdrant", "cross-encoder"],
+      "required_constraints": ["limitations"],
+      "required_time_constraints": []
+    }
+  ]
+}

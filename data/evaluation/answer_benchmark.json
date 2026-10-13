@@ -1,0 +1,385 @@
+{
+  "benchmark_name": "research_answer_benchmark_v1",
+  "version": "1.0",
+  "description": "Scientific and technical answer grounding and citation benchmark across 8 research intents.",
+  "total_queries": 25,
+  "queries": [
+    {
+      "query_id": "ans_01_factual_rag",
+      "query": "What is Retrieval-Augmented Generation and how does it combine parametric and non-parametric memory?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "expected_dimensions": [
+        "parametric memory generator",
+        "non-parametric memory dense retriever",
+        "differentiable end-to-end training",
+        "marginalization over latent documents"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "ground_truth_source": "Lewis et al., 2020 (NeurIPS 2020, arXiv:2005.11401)"
+    },
+    {
+      "query_id": "ans_02_factual_dpr",
+      "query": "How does Dense Passage Retrieval index documents and score question-passage pairs using dual encoders?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "expected_dimensions": [
+        "dual-encoder architecture",
+        "dense representations",
+        "dot-product similarity",
+        "in-batch negative training"
+      ],
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906"],
+      "ground_truth_source": "Karpukhin et al., 2020 (EMNLP 2020, arXiv:2004.04906)"
+    },
+    {
+      "query_id": "ans_03_factual_transformer",
+      "query": "What is the scaled dot-product attention formula in the Transformer architecture?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "expected_dimensions": [
+        "scaled dot-product attention formula",
+        "query, key, value projections",
+        "division by square root of key dimension",
+        "softmax normalization"
+      ],
+      "relevant_documents": ["1706.03762", "arxiv:1706.03762"],
+      "ground_truth_source": "Vaswani et al., 2017 (NeurIPS 2017, arXiv:1706.03762)"
+    },
+    {
+      "query_id": "ans_04_factual_sbert",
+      "query": "What is Sentence-BERT and how does it compute semantically meaningful sentence embeddings?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "expected_dimensions": [
+        "siamese network architecture",
+        "mean pooling over token embeddings",
+        "triplet loss objective",
+        "fast cosine similarity search"
+      ],
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 (EMNLP 2019, arXiv:1908.10084)"
+    },
+    {
+      "query_id": "ans_05_factual_rrf",
+      "query": "What is Reciprocal Rank Fusion and what formula does it use to combine ranked lists?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "expected_dimensions": [
+        "rank reciprocal formula",
+        "smoothing parameter k (typically 60)",
+        "score calibration independence",
+        "combining multiple retrieval systems"
+      ],
+      "relevant_documents": ["0905.0001", "arxiv:0905.0001"],
+      "ground_truth_source": "Cormack, Clarke & Buettcher, 2009 (SIGIR 2009)"
+    },
+    {
+      "query_id": "ans_06_explanatory_rag_mechanisms",
+      "query": "Explain how RAG-Sequence and RAG-Token models differ in their document marginalization mechanisms.",
+      "intent": "EXPLANATORY",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "RAG-Sequence marginalizes over fixed document for entire sequence",
+        "RAG-Token allows different latent documents per generated token",
+        "beam search decoding variations",
+        "joint generation probability"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "ground_truth_source": "Lewis et al., 2020 (NeurIPS 2020, arXiv:2005.11401)"
+    },
+    {
+      "query_id": "ans_07_explanatory_attention",
+      "query": "Explain why multi-head attention allows transformers to jointly attend to information at different representation subspaces.",
+      "intent": "EXPLANATORY",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "linear projections to query, key, value dimensions",
+        "parallel attention heads",
+        "representation subspaces",
+        "concatenation and output projection"
+      ],
+      "relevant_documents": ["1706.03762", "arxiv:1706.03762"],
+      "ground_truth_source": "Vaswani et al., 2017 (NeurIPS 2017, arXiv:1706.03762)"
+    },
+    {
+      "query_id": "ans_08_explanatory_reranking",
+      "query": "Explain why cross-encoder rerankers achieve higher accuracy than dual-encoders but have higher computational latency.",
+      "intent": "EXPLANATORY",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "full cross-attention between all query and document tokens",
+        "lack of precomputable index for cross-encoders",
+        "dual-encoder independent representation caching",
+        "two-stage retrieval architecture trade-off"
+      ],
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906", "1908.10084", "arxiv:1908.10084"],
+      "ground_truth_source": "Karpukhin et al., 2020 & Reimers et al., 2019"
+    },
+    {
+      "query_id": "ans_09_comparative_bm25_vs_dense",
+      "query": "Compare BM25 lexical keyword retrieval versus Dense Passage Retrieval on vocabulary mismatch and exact keyword matching.",
+      "intent": "COMPARATIVE",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "BM25 term frequency-inverse document frequency matching",
+        "BM25 sensitivity to vocabulary mismatch and synonymy",
+        "DPR semantic vector similarity in latent space",
+        "DPR weakness with rare entities and out-of-vocabulary acronyms",
+        "hybrid retrieval complementary strengths"
+      ],
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906", "0905.0001", "arxiv:0905.0001"],
+      "ground_truth_source": "Karpukhin et al., 2020 & Cormack et al., 2009"
+    },
+    {
+      "query_id": "ans_10_comparative_bi_vs_cross_encoder",
+      "query": "Compare bi-encoder architectures like Sentence-BERT with cross-encoder rerankers in terms of scoring latency and token interaction.",
+      "intent": "COMPARATIVE",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "bi-encoder independent passage embedding offline indexing",
+        "cross-encoder joint query-passage input concatenation",
+        "O(1) vector index search vs O(N) forward-pass cross-encoder inference",
+        "token interaction depth across layers"
+      ],
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084", "2608.09650", "arxiv:2608.09650"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 (arXiv:1908.10084)"
+    },
+    {
+      "query_id": "ans_11_comparative_rrf_vs_rsf",
+      "query": "Compare Reciprocal Rank Fusion RRF against Relative Score Fusion RSF for hybrid retrieval candidate merging.",
+      "intent": "COMPARATIVE",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "RRF rank-only position independence without score normalization",
+        "RSF min-max score normalization requirement",
+        "robustness to uncalibrated dense and BM25 score distributions",
+        "weighting parameter alpha impact"
+      ],
+      "relevant_documents": ["0905.0001", "arxiv:0905.0001"],
+      "ground_truth_source": "Cormack, Clarke & Buettcher, 2009 (SIGIR 2009)"
+    },
+    {
+      "query_id": "ans_12_causal_dense_retrieval_failure",
+      "query": "Why does dense semantic retrieval fail when queries contain novel product codes or unseen medical entity identifiers?",
+      "intent": "CAUSAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "out-of-vocabulary tokenization and subword fragmentation",
+        "unseen embedding cluster dispersion in latent space",
+        "lack of exact string matching guarantee in dense dot-products",
+        "mitigation via hybrid lexical search"
+      ],
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906", "0905.0001", "arxiv:0905.0001"],
+      "ground_truth_source": "Karpukhin et al., 2020 (EMNLP 2020, arXiv:2004.04906)"
+    },
+    {
+      "query_id": "ans_13_causal_attention_scaling",
+      "query": "Why does the Transformer scale the dot products by 1/sqrt(d_k) before applying the softmax function?",
+      "intent": "CAUSAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "expected_dimensions": [
+        "dot products grow large in magnitude for large d_k",
+        "large values push the softmax function into regions of extremely small gradients",
+        "division by sqrt(d_k) counteracts variance scaling",
+        "prevents gradient vanishing during backpropagation"
+      ],
+      "relevant_documents": ["1706.03762", "arxiv:1706.03762"],
+      "ground_truth_source": "Vaswani et al., 2017 (NeurIPS 2017, arXiv:1706.03762)"
+    },
+    {
+      "query_id": "ans_14_procedural_hybrid_search",
+      "query": "How to implement a two-stage hybrid retrieval pipeline combining BM25, dense embeddings, and cross-encoder reranking?",
+      "intent": "PROCEDURAL",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "stage 1 parallel BM25 and dense index querying",
+        "stage 1 candidate fusion via Reciprocal Rank Fusion",
+        "candidate deduplication and top-N extraction",
+        "stage 2 cross-encoder batch reranking",
+        "evidence packaging and MMR diversity selection"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401", "2004.04906", "arxiv:2004.04906", "0905.0001", "arxiv:0905.0001"],
+      "ground_truth_source": "Lewis et al., Karpukhin et al., Cormack et al."
+    },
+    {
+      "query_id": "ans_15_procedural_citation_verification",
+      "query": "How does deterministic citation verification validate that LLM generated claims are grounded in evidence passages?",
+      "intent": "PROCEDURAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "claim extraction and citation ID linking",
+        "passage token overlap and semantic similarity checks",
+        "support status classification (SUPPORTED, PARTIALLY_SUPPORTED, UNSUPPORTED)",
+        "source URL and document ID metadata provenance verification"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "ground_truth_source": "Lewis et al., 2020 & AI Research Copilot Verification Engine"
+    },
+    {
+      "query_id": "ans_16_multihop_rag_attention",
+      "query": "How do attention mechanisms in Transformer sequence-to-sequence generators enable grounded synthesis over retrieved documents in RAG?",
+      "intent": "MULTI_HOP",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "dense passage retrieval produces top candidate documents",
+        "cross-attention layers attend to concatenated input context and question",
+        "autoregressive decoding conditioned on non-parametric memory",
+        "marginalization over latent document distributions"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401", "1706.03762", "arxiv:1706.03762"],
+      "ground_truth_source": "Lewis et al., 2020 & Vaswani et al., 2017"
+    },
+    {
+      "query_id": "ans_17_multihop_dpr_rrf_pipeline",
+      "query": "How does combining Dense Passage Retrieval with BM25 using Reciprocal Rank Fusion improve retrieval over individual retrievers?",
+      "intent": "MULTI_HOP",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "BM25 captures exact lexical keywords and terminology",
+        "DPR captures paraphrased semantic meaning",
+        "RRF integrates distinct rank distributions without score scale biases",
+        "higher recall@K and lower zero-hit rates across diverse query types"
+      ],
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906", "0905.0001", "arxiv:0905.0001"],
+      "ground_truth_source": "Karpukhin et al., 2020 & Cormack et al., 2009"
+    },
+    {
+      "query_id": "ans_18_multihop_sbert_reranking",
+      "query": "How does fine-tuning Sentence-BERT embeddings with triplet loss improve dense candidate generation for cross-encoder rerankers?",
+      "intent": "MULTI_HOP",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "triplet loss optimizes relative distance between anchor, positive, and negative",
+        "sentence embeddings cluster semantically in vector space",
+        "higher quality top-N candidate pool passed to downstream rerankers",
+        "cross-encoder acts on high-precision candidates to yield final rank ordering"
+      ],
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084", "2608.09650", "arxiv:2608.09650"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 & Cross-Encoder Literature"
+    },
+    {
+      "query_id": "ans_19_survey_dense_retrieval",
+      "query": "What are the primary dense retrieval architectures for open-domain question answering and knowledge retrieval?",
+      "intent": "SURVEY",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "dual-encoder models (DPR, SBERT)",
+        "late-interaction multi-vector models (ColBERT)",
+        "generative retrieval models",
+        "hybrid dense-lexical architectures"
+      ],
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906", "1908.10084", "arxiv:1908.10084", "2005.11401", "arxiv:2005.11401"],
+      "ground_truth_source": "Karpukhin et al., Reimers et al., Lewis et al."
+    },
+    {
+      "query_id": "ans_20_survey_reranking_methods",
+      "query": "What are the standard reranking paradigms used in multi-stage information retrieval systems?",
+      "intent": "SURVEY",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "pointwise cross-encoders",
+        "pairwise ranking networks",
+        "listwise cross-encoders and neural rankers",
+        "LLM-based sliding window and prompting rerankers"
+      ],
+      "relevant_documents": ["2608.09650", "arxiv:2608.09650", "2004.04906", "arxiv:2004.04906"],
+      "ground_truth_source": "Medical Reranker Paper & Karpukhin et al."
+    },
+    {
+      "query_id": "ans_21_survey_rag_architectures",
+      "query": "What is the taxonomy of retrieval-augmented generation architectures across naïve, advanced, and modular RAG?",
+      "intent": "SURVEY",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "naïve RAG retrieve-then-read approach",
+        "advanced RAG with query pre-retrieval routing and post-retrieval reranking",
+        "modular RAG with iterative routing and multi-hop decomposition",
+        "claim-level citation and verification mechanisms"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401", "0905.0001", "arxiv:0905.0001"],
+      "ground_truth_source": "Lewis et al., 2020 & RAG Evolution Literature"
+    },
+    {
+      "query_id": "ans_22_trend_modular_rag",
+      "query": "What are the recent trends in modular RAG architectures regarding multi-source query decomposition and verification?",
+      "intent": "TREND",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "query intelligence and intent-driven decomposition",
+        "parallel multi-source retrieval across academic, web, and code sources",
+        "evidence deduplication and maximal marginal relevance selection",
+        "hallucination mitigation via deterministic citation audits"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401", "2004.04906", "arxiv:2004.04906"],
+      "ground_truth_source": "Lewis et al. & Modern RAG Architecture Survey"
+    },
+    {
+      "query_id": "ans_23_trend_neural_reranking",
+      "query": "What are the emerging trends in neural rerankers regarding latency optimization and quantization?",
+      "intent": "TREND",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "cross-encoder distillation into lightweight models (MiniLM)",
+        "INT8/FP16 quantization for CPU and edge inference",
+        "two-stage cascade reranking to reduce candidate pool size",
+        "token pruning and early exit strategies"
+      ],
+      "relevant_documents": ["2608.09650", "arxiv:2608.09650", "1908.10084", "arxiv:1908.10084"],
+      "ground_truth_source": "Neural Reranker Optimization Literature"
+    },
+    {
+      "query_id": "ans_24_trend_hallucination_mitigation",
+      "query": "What are the key industry trends in hallucination reduction and citation grounding for scientific AI assistants?",
+      "intent": "TREND",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "claim-level attribution and structured JSON synthesis",
+        "post-generation deterministic citation verification",
+        "unsupported claim pruning and confidence scoring",
+        "interactive provenance tracking linking claims to source documents"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "ground_truth_source": "Lewis et al. & Grounded AI Literature"
+    },
+    {
+      "query_id": "ans_25_factual_rag_scaling",
+      "query": "How do parameter scaling laws and non-parametric retrieval corpus size affect factual accuracy in RAG systems?",
+      "intent": "FACTUAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "expected_dimensions": [
+        "scaling non-parametric corpus expands factual knowledge base without model retraining",
+        "parametric memory scaling improves reasoning and synthesis fluency",
+        "trade-off between corpus retrieval latency and generator size",
+        "knowledge update efficiency via index updates"
+      ],
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401", "test.integration.001"],
+      "ground_truth_source": "Lewis et al., 2020 & Scaling Laws Literature"
+    }
+  ]
+}

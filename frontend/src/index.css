@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { color-scheme: light; }
+  body { @apply bg-paper text-ink font-sans antialiased; }
+  :focus-visible { @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+}
+
+.prose-answer p { @apply mb-3 last:mb-0; }
+.prose-answer ul { @apply list-disc pl-5 mb-3; }
+.prose-answer ol { @apply list-decimal pl-5 mb-3; }
+.prose-answer code { @apply font-mono text-[0.9em] bg-paper-sunk px-1 rounded; }
+.prose-answer a { @apply text-accent underline underline-offset-2; }

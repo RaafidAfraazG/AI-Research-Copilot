@@ -1,0 +1,128 @@
+{
+  "phase": "8.5",
+  "timestamp": "2026-10-01T19:15:15.980958+00:00",
+  "environment": {
+    "python_version": "3.12.10",
+    "platform": "win32",
+    "torch": {
+      "installed": true,
+      "version": "2.14.1+cpu",
+      "cuda_available": false
+    },
+    "sentence_transformers": {
+      "installed": true,
+      "version": "6.1.0"
+    },
+    "transformers": {
+      "installed": true,
+      "version": "5.18.0"
+    },
+    "gemini_sdk": {
+      "installed": true,
+      "version": "0.8.4"
+    },
+    "config": {
+      "llm_provider": "gemini",
+      "gemini_model": "gemini-3.5-flash-lite",
+      "gemini_api_key_configured": true,
+      "llm_allow_paid_provider": false,
+      "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "reranker_device": "cpu",
+      "embedding_model": "all-MiniLM-L6-v2"
+    }
+  },
+  "neural_reranker": {
+    "experiment": "EXPERIMENT A - REAL NEURAL RERANKER",
+    "status": "PASS",
+    "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "device": "cpu",
+    "mode": "neural",
+    "dependencies_installed": true,
+    "reason": null,
+    "cold_start_ms": 14466.34,
+    "warmup_succeeded": true,
+    "warm_latency": {
+      "mean_ms": 266.89,
+      "p50_ms": 283.9,
+      "p95_ms": 349.69,
+      "iterations": 5
+    },
+    "memory_mb_before": null,
+    "memory_mb_after": null,
+    "neural_inference_proof": {
+      "query": "What is retrieval augmented generation?",
+      "batch_size": 4,
+      "latency_ms": 219.1,
+      "raw_scores": [
+        8.7084,
+        -11.4559,
+        -11.4055,
+        -4.0825
+      ],
+      "ranking": [
+        {
+          "label": "A (RAG)",
+          "score": 8.7084
+        },
+        {
+          "label": "D (Retrieval)",
+          "score": -4.0825
+        },
+        {
+          "label": "C (HTTP)",
+          "score": -11.4055
+        },
+        {
+          "label": "B (Photosynthesis)",
+          "score": -11.4559
+        }
+      ],
+      "neural_proven": true
+    },
+    "small_benchmark": {
+      "query_count": 5,
+      "hit_at_1_count": 5,
+      "distractor_pushdown_count": 5,
+      "avg_latency_ms": 284.8
+    }
+  },
+  "gemini": {
+    "experiment": "EXPERIMENT B - GEMINI FREE-TIER LLM",
+    "status": "PARTIAL_PASS",
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "mode": "real",
+    "api_key_configured": true,
+    "paid_provider_guard_active": true,
+    "reason": null,
+    "smoke_request": {
+      "status": "PASS",
+      "latency_ms": 1367.63,
+      "parsed_json": {
+        "status": "ok",
+        "message": "Gemini smoke test successful"
+      },
+      "error_category": null
+    },
+    "grounded_answer_test": {
+      "status": "FAILED",
+      "error": "'CitationVerificationResult' object has no attribute 'citation_validity_rate'",
+      "total_latency_ms": 0.0
+    },
+    "insufficient_evidence_test": {
+      "status": "PASS",
+      "insufficient_evidence_flag": true,
+      "refused_or_handled": true
+    }
+  },
+  "truth_table": {
+    "offline_test_suite": "PASS",
+    "neural_cross_encoder_loaded": "PASS",
+    "neural_inference_executed": "PASS",
+    "gemini_api_connected": "PARTIAL_PASS",
+    "real_gemini_generation": "PASS",
+    "grounded_gemini_answer": "NOT VALIDATED",
+    "citation_verification": "PASS",
+    "insufficient_evidence_handling": "PASS"
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "phase": "10",
+  "test": "gemini_e2e_validation",
+  "timestamp": "2026-10-10T07:37:51.240686+00:00",
+  "status": "PASS",
+  "real_gemini_call": true,
+  "mode": "real_gemini_free_tier",
+  "provider": "gemini",
+  "model": "gemini-3.5-flash-lite",
+  "llm_calls": 1,
+  "latency_ms": 9782.4,
+  "checks": {
+    "provider_is_gemini": true,
+    "model_is_configured_model": true,
+    "single_llm_call": true,
+    "query_analysis_present": true,
+    "plan_present": true,
+    "evidence_retrieved": true,
+    "neural_reranker_active": true,
+    "not_insufficient_evidence": true,
+    "has_claims": true,
+    "has_citations": true,
+    "sections_consistent_with_claims": true
+  },
+  "plan": {
+    "strategy": "dependency_aware",
+    "subqueries": 3,
+    "intent": "COMPARATIVE"
+  },
+  "retrieval": {
+    "evidence_passages": 5,
+    "sources": 2
+  },
+  "reranker": {
+    "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "neural": true
+  },
+  "answer_stats": {
+    "claims": 7,
+    "citations": 2,
+    "supported": 7,
+    "partially_supported": 0,
+    "unsupported": 0,
+    "verification_valid": true,
+    "verification_method": "structural_evidence_id_check",
+    "semantic_entailment_checked": false
+  },
+  "tokens": {
+    "input": 2011,
+    "output": 1292,
+    "total": 3303
+  },
+  "note": "Support status is a structural evidence-id check, not an entailment check. Read the cited passages to judge factual support."
+}

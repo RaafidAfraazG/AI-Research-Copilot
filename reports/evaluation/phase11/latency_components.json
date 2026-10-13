@@ -1,0 +1,25 @@
+{
+  "timestamp": "2026-10-10T08:08:51.877244+00:00",
+  "host_cpu_only": true,
+  "components": {
+    "index_generation": "gen-20261010T080354Z-16e621",
+    "passages_used": 25,
+    "embedding_model_init_ms": 1412.6,
+    "embedding_first_query_ms": 20.3,
+    "embedding_warm_query_ms": {
+      "n": 20,
+      "p50": 23.7,
+      "p95": 52.6
+    },
+    "reranker_model_init_ms": 323.5,
+    "reranker_first_inference_25_pairs_ms": 5376.8,
+    "reranker_warm_inference_25_pairs_ms": {
+      "n": 10,
+      "p50": 4619.6,
+      "p95": 6158.6,
+      "per_pair_p50": 184.8
+    },
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "device": "cpu"
+  }
+}

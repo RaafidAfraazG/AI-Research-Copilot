@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "description": "Sample research queries for testing the AI Research Copilot pipeline",
+  "queries": [
+    {
+      "id": "q001",
+      "query": "Compare YOLO-based object detection models with transformer-based detectors for edge deployment. Focus on inference latency, accuracy, hardware requirements, and recent research.",
+      "intent": "comparison",
+      "dimensions": ["accuracy", "latency", "hardware_requirements", "edge_deployment"],
+      "expected_sources": ["arxiv", "semantic_scholar"],
+      "notes": "Primary benchmark query from product spec"
+    },
+    {
+      "id": "q002",
+      "query": "What are the most effective techniques for reducing hallucination in large language models?",
+      "intent": "research",
+      "dimensions": ["techniques", "evaluation", "benchmarks", "recent_papers"],
+      "expected_sources": ["arxiv", "semantic_scholar", "web"],
+      "notes": "Tests hallucination/grounding research domain"
+    },
+    {
+      "id": "q003",
+      "query": "How does Retrieval-Augmented Generation compare to fine-tuning for domain-specific question answering?",
+      "intent": "comparison",
+      "dimensions": ["accuracy", "cost", "data_requirements", "deployment"],
+      "expected_sources": ["arxiv", "semantic_scholar"],
+      "notes": "Tests RAG vs fine-tuning comparison"
+    },
+    {
+      "id": "q004",
+      "query": "What are the current state-of-the-art approaches for 3D point cloud segmentation?",
+      "intent": "research",
+      "dimensions": ["architectures", "benchmarks", "datasets", "performance"],
+      "expected_sources": ["arxiv", "semantic_scholar"],
+      "notes": "3D vision research query"
+    },
+    {
+      "id": "q005",
+      "query": "Explain the differences between BM25 and dense retrieval, and when to use hybrid search.",
+      "intent": "factual",
+      "dimensions": ["bm25", "dense_retrieval", "hybrid_search", "use_cases"],
+      "expected_sources": ["web", "arxiv"],
+      "notes": "Information retrieval fundamentals — tests the system on its own domain"
+    }
+  ]
+}

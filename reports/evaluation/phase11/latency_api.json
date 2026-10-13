@@ -1,0 +1,28 @@
+{
+  "timestamp": "2026-10-10T08:11:20.463652+00:00",
+  "host_cpu_only": true,
+  "api": {
+    "n_requests": 8,
+    "provider": "mock",
+    "model": "mock-research-model-v1",
+    "first_request_ms (cold)": 57752.3,
+    "warm_total_ms": {
+      "n": 7,
+      "p50": 4173.2,
+      "p95": 8785.5,
+      "max": 8785.5
+    },
+    "warm_retrieval_stage_ms_p50": 4154.0,
+    "warm_generation_stage_ms_p50": 0.3,
+    "all_ms": [
+      57752.3,
+      8785.5,
+      6876.2,
+      4637.6,
+      4173.2,
+      3833.9,
+      3358.8,
+      3434.2
+    ]
+  }
+}

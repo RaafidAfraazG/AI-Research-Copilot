@@ -1,0 +1,283 @@
+{
+  "benchmark_name": "research_retrieval_benchmark_v1",
+  "version": "1.0",
+  "description": "Scientific and technical retrieval benchmark for multi-source research queries.",
+  "total_queries": 25,
+  "queries": [
+    {
+      "query_id": "ret_01_factual_rag",
+      "query": "What is Retrieval-Augmented Generation for knowledge-intensive NLP tasks?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "relevant_passages": [],
+      "required_dimensions": ["retrieval-augmented generation", "parametric memory", "non-parametric memory"],
+      "ground_truth_source": "Lewis et al., 2020 (NeurIPS 2020, arXiv:2005.11401)"
+    },
+    {
+      "query_id": "ret_02_factual_dpr",
+      "query": "What is Dense Passage Retrieval and how does it encode questions and passages?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906"],
+      "relevant_passages": [],
+      "required_dimensions": ["dense passage retrieval", "dual-encoder", "question encoder", "passage encoder"],
+      "ground_truth_source": "Karpukhin et al., 2020 (EMNLP 2020, arXiv:2004.04906)"
+    },
+    {
+      "query_id": "ret_03_factual_transformer",
+      "query": "What is the scaled dot-product attention formula in the Transformer architecture?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "relevant_documents": ["1706.03762", "arxiv:1706.03762"],
+      "relevant_passages": [],
+      "required_dimensions": ["scaled dot-product attention", "softmax", "multi-head attention"],
+      "ground_truth_source": "Vaswani et al., 2017 (NeurIPS 2017, arXiv:1706.03762)"
+    },
+    {
+      "query_id": "ret_04_factual_sbert",
+      "query": "What is Sentence-BERT and how does it compute sentence embeddings?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084"],
+      "relevant_passages": [],
+      "required_dimensions": ["sentence-bert", "siamese networks", "cosine similarity"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 (EMNLP 2019, arXiv:1908.10084)"
+    },
+    {
+      "query_id": "ret_05_factual_rrf",
+      "query": "What is Reciprocal Rank Fusion and what is the smoothing constant formula?",
+      "intent": "FACTUAL",
+      "difficulty": "simple",
+      "requires_decomposition": false,
+      "relevant_documents": ["0905.0001", "arxiv:0905.0001"],
+      "relevant_passages": [],
+      "required_dimensions": ["reciprocal rank fusion", "smoothing constant", "rank reciprocal"],
+      "ground_truth_source": "Cormack, Clarke & Buettcher, 2009 (SIGIR 2009)"
+    },
+    {
+      "query_id": "ret_06_explanatory_rag_types",
+      "query": "How do RAG-Sequence and RAG-Token models differ in token generation and attention?",
+      "intent": "EXPLANATORY",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "relevant_passages": [],
+      "required_dimensions": ["rag-sequence", "rag-token", "token generation", "seq2seq generator"],
+      "ground_truth_source": "Lewis et al., 2020 Section 2.1"
+    },
+    {
+      "query_id": "ret_07_explanatory_rrf_mechanism",
+      "query": "How does Reciprocal Rank Fusion combine ranked search lists without score normalization?",
+      "intent": "EXPLANATORY",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["0905.0001", "arxiv:0905.0001"],
+      "relevant_passages": [],
+      "required_dimensions": ["rank position", "unsupervised fusion", "score normalization"],
+      "ground_truth_source": "Cormack et al., 2009 Section 3"
+    },
+    {
+      "query_id": "ret_08_explanatory_sbert_pooling",
+      "query": "How does Sentence-BERT use mean pooling and classification objectives on NLI datasets?",
+      "intent": "EXPLANATORY",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084"],
+      "relevant_passages": [],
+      "required_dimensions": ["mean pooling", "snli", "mnli", "siamese bert"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 Section 3"
+    },
+    {
+      "query_id": "ret_09_comparative_dpr_vs_bm25",
+      "query": "Compare Dense Passage Retrieval and BM25 on top-20 passage retrieval accuracy on Natural Questions.",
+      "intent": "COMPARATIVE",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906"],
+      "relevant_passages": [],
+      "required_dimensions": ["dense passage retrieval", "bm25", "top-20 accuracy", "natural questions"],
+      "ground_truth_source": "Karpukhin et al., 2020 Table 2 & Section 5"
+    },
+    {
+      "query_id": "ret_10_comparative_cross_vs_bi_encoders",
+      "query": "Compare computational complexity and inference latency between cross-encoders and bi-encoders for pairwise sentence similarity.",
+      "intent": "COMPARATIVE",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084"],
+      "relevant_passages": [],
+      "required_dimensions": ["cross-encoder", "bi-encoder", "inference latency", "65 hours vs 5 seconds"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 Introduction & Section 1"
+    },
+    {
+      "query_id": "ret_11_comparative_rag_vs_parametric",
+      "query": "What are the trade-offs between RAG models and pure parametric language models regarding factual accuracy and knowledge updates?",
+      "intent": "COMPARATIVE",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "relevant_passages": [],
+      "required_dimensions": ["parametric memory", "non-parametric memory", "hallucination reduction", "knowledge updates"],
+      "ground_truth_source": "Lewis et al., 2020 Section 1 & Section 4"
+    },
+    {
+      "query_id": "ret_12_comparative_hybrid_bm25_dpr",
+      "query": "Compare combining BM25 lexical search with dense passage retrieval versus individual retrieval approaches.",
+      "intent": "COMPARATIVE",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906", "0905.0001", "arxiv:0905.0001"],
+      "relevant_passages": [],
+      "required_dimensions": ["hybrid retrieval", "bm25", "dpr", "fusion"],
+      "ground_truth_source": "Karpukhin et al., 2020 Section 5 & Cormack et al., 2009"
+    },
+    {
+      "query_id": "ret_13_causal_why_rag_reduces_hallucination",
+      "query": "Why does retrieval augmentation reduce hallucinations and improve factual specificity in language model generation?",
+      "intent": "CAUSAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "relevant_passages": [],
+      "required_dimensions": ["hallucination reduction", "grounding", "external document index"],
+      "ground_truth_source": "Lewis et al., 2020 Section 1"
+    },
+    {
+      "query_id": "ret_14_causal_why_transformers_parallelize",
+      "query": "Why do self-attention mechanisms in Transformers enable faster training and parallelization compared to recurrent neural networks?",
+      "intent": "CAUSAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["1706.03762", "arxiv:1706.03762"],
+      "relevant_passages": [],
+      "required_dimensions": ["self-attention", "parallelization", "non-sequential processing", "rnns"],
+      "ground_truth_source": "Vaswani et al., 2017 Section 1 & Section 2"
+    },
+    {
+      "query_id": "ret_15_causal_why_cross_encoders_are_slow",
+      "query": "Why do cross-encoders suffer from quadratic scaling overhead when evaluating large corpora for semantic search?",
+      "intent": "CAUSAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084"],
+      "relevant_passages": [],
+      "required_dimensions": ["pairwise comparisons", "computational complexity", "quadratic overhead"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 Section 1"
+    },
+    {
+      "query_id": "ret_16_procedural_how_to_train_dpr",
+      "query": "How to train dense passage retrieval models using in-batch negatives and hard negative mining?",
+      "intent": "PROCEDURAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["2004.04906", "arxiv:2004.04906"],
+      "relevant_passages": [],
+      "required_dimensions": ["training procedure", "in-batch negatives", "hard negative mining", "dot-product loss"],
+      "ground_truth_source": "Karpukhin et al., 2020 Section 3"
+    },
+    {
+      "query_id": "ret_17_procedural_how_to_train_sbert",
+      "query": "How to fine-tune Siamese BERT models with triplet loss and classification objectives?",
+      "intent": "PROCEDURAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084"],
+      "relevant_passages": [],
+      "required_dimensions": ["fine-tuning", "triplet loss", "classification objective", "snli"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 Section 3"
+    },
+    {
+      "query_id": "ret_18_procedural_how_to_finetune_rag",
+      "query": "How to fine-tune RAG models jointly across retriever and generator components for downstream QA tasks?",
+      "intent": "PROCEDURAL",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401"],
+      "relevant_passages": [],
+      "required_dimensions": ["fine-tuning recipe", "dpr retriever", "bart generator", "joint training"],
+      "ground_truth_source": "Lewis et al., 2020 Section 2.3"
+    },
+    {
+      "query_id": "ret_19_procedural_medical_reranking",
+      "query": "How to apply listwise cross-encoder fine-tuning for LLM rerankers in clinical and medical procedure reranking?",
+      "intent": "PROCEDURAL",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["2608.09650", "arxiv:2608.09650"],
+      "relevant_passages": [],
+      "required_dimensions": ["listwise fine-tuning", "cross-encoder reranker", "medical procedures"],
+      "ground_truth_source": "Medical Procedure Reranker Paper (arXiv:2608.09650)"
+    },
+    {
+      "query_id": "ret_20_multihop_dpr_and_rag",
+      "query": "Which neural retriever model introduced in 2020 was adopted as the dense non-parametric memory in the original RAG architecture?",
+      "intent": "MULTI_HOP",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401", "2004.04906", "arxiv:2004.04906"],
+      "relevant_passages": [],
+      "required_dimensions": ["dpr", "karpukhin", "rag non-parametric memory", "dense retriever integration"],
+      "ground_truth_source": "Lewis et al., 2020 & Karpukhin et al., 2020"
+    },
+    {
+      "query_id": "ret_21_multihop_sbert_and_transformers",
+      "query": "How does Sentence-BERT build upon the multi-head self-attention Transformer to derive fixed-dimensional sentence embeddings?",
+      "intent": "MULTI_HOP",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["1908.10084", "arxiv:1908.10084", "1706.03762", "arxiv:1706.03762"],
+      "relevant_passages": [],
+      "required_dimensions": ["transformer attention", "sbert pooling", "fixed-size vector representation"],
+      "ground_truth_source": "Reimers & Gurevych, 2019 & Vaswani et al., 2017"
+    },
+    {
+      "query_id": "ret_22_survey_rag_landscape",
+      "query": "Comprehensive survey of retrieval-augmented generation architectures, indexing methods, and open-domain question answering benchmarks.",
+      "intent": "SURVEY",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["2005.11401", "arxiv:2005.11401", "2004.04906", "arxiv:2004.04906"],
+      "relevant_passages": [],
+      "required_dimensions": ["rag survey", "dense indexing", "triviaqa", "natural questions", "webquestions"],
+      "ground_truth_source": "Lewis et al., 2020 & Karpukhin et al., 2020"
+    },
+    {
+      "query_id": "ret_23_survey_rank_aggregation",
+      "query": "Overview of unsupervised rank aggregation methods combining lexical BM25 and neural dense representations.",
+      "intent": "SURVEY",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["0905.0001", "arxiv:0905.0001", "2004.04906", "arxiv:2004.04906"],
+      "relevant_passages": [],
+      "required_dimensions": ["rank aggregation", "rrf", "hybrid search", "bm25", "dense"],
+      "ground_truth_source": "Cormack et al., 2009 & Karpukhin et al., 2020"
+    },
+    {
+      "query_id": "ret_24_trend_neural_reranking_advances",
+      "query": "What are recent trends and state-of-the-art advances in cross-encoder neural rerankers and listwise instruction tuning?",
+      "intent": "TREND",
+      "difficulty": "complex",
+      "requires_decomposition": true,
+      "relevant_documents": ["2608.09650", "arxiv:2608.09650", "1908.10084", "arxiv:1908.10084"],
+      "relevant_passages": [],
+      "required_dimensions": ["recent trends", "listwise instruction tuning", "cross-encoder reranking"],
+      "ground_truth_source": "arXiv:2608.09650 & Reimers & Gurevych, 2019"
+    },
+    {
+      "query_id": "ret_25_trend_reasoning_scaling_laws",
+      "query": "What are recent advances and scaling laws in reasoning models for transformer architectures?",
+      "intent": "TREND",
+      "difficulty": "moderate",
+      "requires_decomposition": true,
+      "relevant_documents": ["test.integration.001", "1706.03762", "arxiv:1706.03762"],
+      "relevant_passages": [],
+      "required_dimensions": ["transformer scaling laws", "reasoning models", "compute scaling"],
+      "ground_truth_source": "Test Integration Corpus & Vaswani et al., 2017"
+    }
+  ]
+}

@@ -1,0 +1,153 @@
+{
+  "description": "Authoritative source documents for index builds. Excludes test-suite pollution found in the legacy index (e.g. 'test-doc-1' and unit-test fixture strings).",
+  "documents": [
+    {
+      "source_type": "arxiv",
+      "source_id": "2005.11401",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "content": "Large pre-trained language models store substantial factual knowledge within their neural weights. However, they suffer from fundamental limitations: inability to update knowledge dynamically, hallucinations when uncertain, and lack of verifiable citations. Retrieval-Augmented Generation (RAG) addresses these shortcomings by pairing a pre-trained sequence-to-sequence model with a dense vector retriever over an external document index. In RAG-Sequence models, the same retrieved passage is used to generate the complete sequence. In RAG-Token models, different passages can be attended to for generating each token. Empirical evaluations across Open-Domain Question Answering (Natural Questions, TriviaQA, WebQuestions) demonstrate that RAG models establish new state-of-the-art results, generating more factual, specific, and diverse responses than pure parametric models while allowing non-parametric knowledge indices to be swapped without retraining the generator.",
+      "metadata": {
+        "authors": [
+          "Patrick Lewis",
+          "Ethan Perez",
+          "Aleksandra Piktus",
+          "Fabio Petroni",
+          "Vladimir Karpukhin",
+          "Naman Goyal",
+          "Heinrich Küttler",
+          "Mike Lewis",
+          "Wen-tau Yih",
+          "Tim Rocktäschel",
+          "Sebastian Riedel",
+          "Douwe Kiela"
+        ],
+        "year": 2020,
+        "abstract": "Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when fine-tuned on downstream NLP tasks. However, their ability to access and precisely manipulate knowledge is still limited, and hence on knowledge-intensive tasks, their performance lags behind task-specific architectures. In this work, we develop a general-purpose fine-tuning recipe for retrieval-augmented generation (RAG) — models which combine pre-trained parametric and non-parametric memory for language generation. We introduce RAG models where the parametric memory is a pre-trained seq2seq model and the non-parametric memory is a dense vector index of Wikipedia, accessed with a pre-trained neural retriever.",
+        "category": "cs.CL"
+      },
+      "provenance": "data/sample_papers.json"
+    },
+    {
+      "source_type": "arxiv",
+      "source_id": "2004.04906",
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "url": "https://arxiv.org/abs/2004.04906",
+      "content": "Open-domain question answering (QA) traditionally relies on sparse lexical retrieval systems like BM25 to identify candidate passages from Wikipedia or large text corpora. Dense Passage Retrieval (DPR) shows that dense embeddings learned via a dual-encoder architecture can substantially outperform BM25. DPR utilizes two separate BERT encoders: a Question Encoder that maps input queries into a 768-dimensional space, and a Passage Encoder that maps text passages into the same vector space. Relevance scoring is computed via the dot product of the query and passage vectors. Trained using in-batch negatives and hard negative mining, DPR achieves a top-20 passage retrieval accuracy of 78.4% on Natural Questions, compared to 59.1% for BM25. Furthermore, combining BM25 and DPR in a hybrid retrieval setup yields superior recall across heterogeneous query distributions.",
+      "metadata": {
+        "authors": [
+          "Vladimir Karpukhin",
+          "Barlas Oğuz",
+          "Sewon Min",
+          "Patrick Lewis",
+          "Ledell Wu",
+          "Sergey Edunov",
+          "Danqi Chen",
+          "Wen-tau Yih"
+        ],
+        "year": 2020,
+        "abstract": "Open-domain question answering relies on efficient passage retrieval to select candidate contexts. Traditional systems predominantly employ TF-IDF or BM25 keyword matching. We demonstrate that retrieval can be implemented using dense representations, where embeddings are learned using dual-encoder architectures.",
+        "category": "cs.CL"
+      },
+      "provenance": "data/sample_papers.json"
+    },
+    {
+      "source_type": "arxiv",
+      "source_id": "1706.03762",
+      "title": "Attention Is All You Need",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "content": "The Transformer architecture replaces recurrent neural networks (RNNs) and convolutional networks with multi-head self-attention mechanisms. Recurrent models process sequences sequentially, preventing parallelization across training examples. In contrast, the Transformer computes scaled dot-product attention across all positions simultaneously: Attention(Q, K, V) = softmax(Q K^T / sqrt(d_k)) V. Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions. Combined with sinusoidal positional encodings, layer normalization, and residual connections, the Transformer achieves superior translation quality (28.4 BLEU on WMT 2014 English-to-German) while training significantly faster than recurrent baselines.",
+      "metadata": {
+        "authors": [
+          "Ashish Vaswani",
+          "Noam Shazeer",
+          "Niki Parmar",
+          "Jakob Uszkoreit",
+          "Llion Jones",
+          "Aidan N. Gomez",
+          "Lukasz Kaiser",
+          "Illia Polosukhin"
+        ],
+        "year": 2017,
+        "abstract": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks. We propose the Transformer, a model architecture eschewing recurrence and relying entirely on an attention mechanism to draw global dependencies between input and output.",
+        "category": "cs.CL"
+      },
+      "provenance": "data/sample_papers.json"
+    },
+    {
+      "source_type": "arxiv",
+      "source_id": "1908.10084",
+      "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+      "url": "https://arxiv.org/abs/1908.10084",
+      "content": "Sentence-BERT (SBERT) introduces a siamese network architecture for fine-tuning pre-trained BERT and RoBERTa models to produce fixed-size sentence embeddings. While cross-encoders provide high accuracy for sentence comparison, finding the most similar pair among 10,000 sentences requires approximately 50 million inference passes (about 65 hours on modern GPUs). SBERT reduces this computation to 5 seconds by embedding sentences into a vector space where semantic similarity corresponds to cosine distance. SBERT is trained using 3-class classification on SNLI and Multi-Genre NLI datasets with mean pooling, establishing state-of-the-art performance on Semantic Textual Similarity (STS) benchmark datasets.",
+      "metadata": {
+        "authors": [
+          "Nils Reimers",
+          "Iryna Gurevych"
+        ],
+        "year": 2019,
+        "abstract": "BERT and RoBERTa have set state-of-the-art performance on sentence-pair regression tasks like semantic textual similarity. However, finding the most similar pair requires comparing all combinations, causing massive computational overhead. Sentence-BERT modifies pre-trained BERT networks using siamese and triplet structures to derive semantically meaningful sentence embeddings that can be compared using cosine similarity.",
+        "category": "cs.CL"
+      },
+      "provenance": "data/sample_papers.json"
+    },
+    {
+      "source_type": "arxiv",
+      "source_id": "0905.0001",
+      "title": "Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods",
+      "url": "https://arxiv.org/abs/0905.0001",
+      "content": "Combining results from diverse search systems often yields significant improvements in retrieval effectiveness over any individual ranking method. Reciprocal Rank Fusion (RRF) is an effective, parameter-light method that assigns scores based on the reciprocal of the document rank: RRF_score(d) = sum(1 / (k + r(d))), where r(d) is the rank of document d in a given run, and k is a smoothing constant typically set to 60. RRF does not require score normalization or calibration across disparate retrieval models, making it ideal for fusing lexical search (e.g. BM25) and dense vector search (e.g. bi-encoder embeddings).",
+      "metadata": {
+        "authors": [
+          "Gordon V. Cormack",
+          "Charles L. A. Clarke",
+          "Stefan Buettcher"
+        ],
+        "year": 2009,
+        "abstract": "Reciprocal Rank Fusion (RRF) is an unsupervised ranking aggregation algorithm that combines multiple ranked lists into a single consensus ranking. RRF uses rank position rather than raw scores, making it robust against varying score distributions.",
+        "category": "cs.IR"
+      },
+      "provenance": "data/sample_papers.json"
+    },
+    {
+      "source_type": "arxiv",
+      "source_id": "2608.09650",
+      "title": "Listwise Cross-Encoder Fine-Tuning vs. Agentic Instruction Tuning for LLM Rerankers: A Systematic Study in Medical Procedure Reranking",
+      "url": "https://arxiv.org/abs/2608.09650v1",
+      "content": "Reranking medical procedures against patient queries is a critical component of health insurance information retrieval, complicated by a substantial lexical gap between patient language and clinical nomenclature. We present a systematic comparison of two reranking paradigms for this production task: (1) small cross-encoders (MedCPT, MiniLM-L12) fine-tuned with listwise learning-to-rank objectives across layer freezing configurations, and (2) Qwen3-Reranker-4B, a 4B-parameter instruction reranker whose prompt is iteratively refined via an agentic optimization loop driven by GPT-4.1. On a purpose-built dataset of 2,647 queries across 708 insurance services, we find that a 109M-parameter cross-encoder fine-tuned with ListNet outperforms the 4B-parameter model by 2.6 percentage points on NDCG@3 and 13.3 points on Spearman correlation - at 37x fewer parameters. We report practical findings, a scalable LLM based dataset construction pipeline, and deployment trade-offs relevant to production reranking systems. We release our code and a sample dataset to support reproducibility and adaptation to other domains.",
+      "metadata": {
+        "arxiv_id": "2608.09650",
+        "journal_ref": null,
+        "comment": "10 pages, 6 figures, 4 tables. Code available at https://github.com/matanf-healthee/listwise-crossencoder-reranking",
+        "doi": null,
+        "authors": [
+          "Matan Fainzilber",
+          "Shlomit Plavner"
+        ],
+        "publication_date": "2026-08-10",
+        "venue": "arXiv",
+        "categories": [
+          "cs.IR",
+          "cs.CL"
+        ],
+        "citation_count": null,
+        "tldr": null,
+        "pdf_url": "https://arxiv.org/pdf/2608.09650v1",
+        "abstract": "Reranking medical procedures against patient queries is a critical component of health insurance information retrieval, complicated by a substantial lexical gap between patient language and clinical nomenclature. We present a systematic comparison of two reranking paradigms for this production task: (1) small cross-encoders (MedCPT, MiniLM-L12) fine-tuned with listwise learning-to-rank objectives across layer freezing configurations, and (2) Qwen3-Reranker-4B, a 4B-parameter instruction reranker whose prompt is iteratively refined via an agentic optimization loop driven by GPT-4.1. On a purpose-built dataset of 2,647 queries across 708 insurance services, we find that a 109M-parameter cross-encoder fine-tuned with ListNet outperforms the 4B-parameter model by 2.6 percentage points on NDCG@3 and 13.3 points on Spearman correlation - at 37x fewer parameters. We report practical findings, a scalable LLM based dataset construction pipeline, and deployment trade-offs relevant to production reranking systems. We release our code and a sample dataset to support reproducibility and adaptation to other domains."
+      },
+      "provenance": "recovered_from_legacy_index (single unique chunk; duplicates collapsed)"
+    },
+    {
+      "source_type": "arxiv",
+      "source_id": "test.integration.001",
+      "title": "Transformer Scaling Laws for Reasoning Models",
+      "url": null,
+      "content": "Scaling transformer parameters and training compute leads to predictable empirical performance improvements across diverse language tasks.",
+      "metadata": {
+        "category": "cs.LG",
+        "year": 2024
+      },
+      "provenance": "recovered_from_legacy_index (single unique chunk; duplicates collapsed)"
+    }
+  ]
+}

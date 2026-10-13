@@ -1,0 +1,126 @@
+{
+  "benchmark_name": "ai_research_copilot_system_benchmark",
+  "version": "1.0",
+  "description": "Configuration specification for retrieval, grounding, answer quality, and latency benchmarks.",
+  "dataset_paths": {
+    "retrieval_benchmark": "data/evaluation/retrieval_benchmark.json",
+    "answer_benchmark": "data/evaluation/answer_benchmark.json",
+    "decomposition_benchmark": "data/evaluation/decomposition_benchmark.json"
+  },
+  "retrieval_parameters": {
+    "candidate_k": 25,
+    "evidence_k": 6,
+    "alpha": 0.5,
+    "rrf_k": 60,
+    "min_score": 0.0,
+    "source_types": ["arxiv", "semantic_scholar", "web", "test_fixture"]
+  },
+  "planning_parameters": {
+    "max_subqueries": 5,
+    "max_evidence_per_subquery": 4,
+    "min_evidence_score": 0.0,
+    "deduplicate_by": "passage_id"
+  },
+  "synthesis_parameters": {
+    "llm_provider": "mock",
+    "llm_model": "mock-deterministic-grounded",
+    "temperature": 0.0,
+    "max_tokens": 2048
+  },
+  "models": {
+    "embedding_model": "text-embedding-3-small",
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "reranker_device": "cpu",
+    "reranker_fallback_mode": "hybrid_score"
+  },
+  "variants": [
+    {
+      "id": "variant_a_bm25",
+      "name": "Variant A: BM25 Lexical Retrieval",
+      "description": "Pure keyword matching via OpenSearch / in-memory inverted index",
+      "retrieval_mode": "bm25",
+      "uses_reranker": false,
+      "uses_decomposition": false,
+      "uses_synthesis": false
+    },
+    {
+      "id": "variant_b_dense",
+      "name": "Variant B: Dense Vector Retrieval",
+      "description": "Pure dense semantic embedding search via Qdrant / in-memory vector index",
+      "retrieval_mode": "dense",
+      "uses_reranker": false,
+      "uses_decomposition": false,
+      "uses_synthesis": false
+    },
+    {
+      "id": "variant_c_hybrid",
+      "name": "Variant C: Hybrid Retrieval (BM25 + Dense)",
+      "description": "Combined lexical and dense retrieval using Reciprocal Rank Fusion (RRF)",
+      "retrieval_mode": "hybrid",
+      "uses_reranker": false,
+      "uses_decomposition": false,
+      "uses_synthesis": false
+    },
+    {
+      "id": "variant_d_hybrid_reranker",
+      "name": "Variant D: Hybrid + Cross-Encoder Reranking",
+      "description": "Two-stage retrieval: Hybrid candidate search followed by cross-encoder reranking",
+      "retrieval_mode": "hybrid_rerank",
+      "uses_reranker": true,
+      "uses_decomposition": false,
+      "uses_synthesis": false
+    },
+    {
+      "id": "variant_e_decomp_hybrid",
+      "name": "Variant E: Query Decomposition + Hybrid",
+      "description": "Multi-hop query intelligence with parallel subquery hybrid retrieval and evidence merging",
+      "retrieval_mode": "decomp_hybrid",
+      "uses_reranker": false,
+      "uses_decomposition": true,
+      "uses_synthesis": false
+    },
+    {
+      "id": "variant_f_full_pipeline",
+      "name": "Variant F: Full Research Pipeline",
+      "description": "End-to-end: Query Intelligence -> Parallel Hybrid Retrieval -> Reranking -> Evidence Selection -> Grounded Synthesis -> Verification",
+      "retrieval_mode": "full_pipeline",
+      "uses_reranker": true,
+      "uses_decomposition": true,
+      "uses_synthesis": true
+    }
+  ],
+  "metrics": {
+    "retrieval": [
+      "recall_at_1",
+      "recall_at_5",
+      "recall_at_10",
+      "precision_at_1",
+      "precision_at_5",
+      "precision_at_10",
+      "mrr",
+      "ndcg_at_5",
+      "ndcg_at_10",
+      "evidence_dimension_coverage"
+    ],
+    "answer": [
+      "claim_support_rate",
+      "unsupported_claim_rate",
+      "citation_coverage",
+      "citation_validity_rate",
+      "citation_precision",
+      "citation_traceability_rate",
+      "evidence_dimension_coverage",
+      "grounding_rate"
+    ],
+    "latency": [
+      "query_analysis_latency_ms",
+      "decomposition_latency_ms",
+      "retrieval_latency_ms",
+      "reranking_latency_ms",
+      "evidence_merge_latency_ms",
+      "llm_generation_latency_ms",
+      "citation_verification_latency_ms",
+      "total_latency_ms"
+    ]
+  }
+}

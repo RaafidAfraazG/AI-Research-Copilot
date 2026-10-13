@@ -1,0 +1,3937 @@
+{
+  "benchmark_name": "ai_research_copilot_system_benchmark",
+  "version": "1.0",
+  "timestamp": "2026-10-10T08:08:16.681437+00:00",
+  "environment": {
+    "dataset_size": 25,
+    "dataset": {
+      "name": "research_retrieval_benchmark_v1",
+      "version": "1.0",
+      "file": "retrieval_benchmark.json",
+      "sha256": "f0804b3532f6a248256568c3442bd39b0166cc92b332f3a38ee9b4c8bcf3e062",
+      "queries": 25
+    },
+    "index": {
+      "generation_id": "gen-20261010T080354Z-16e621",
+      "created_at": "2026-10-10T08:03:54.438102+00:00",
+      "documents": 41,
+      "chunks": 41,
+      "chunking": {
+        "chunk_size_tokens": 512,
+        "chunk_overlap_tokens": 50,
+        "chunker_version": "passage_chunker/v1"
+      },
+      "corpus_sha256": "fffed209ae93f4edcffaf1bedb397810491cc1ff6385a977864affde5fd92bfa"
+    },
+    "embedding": {
+      "provider": "sentence_transformers",
+      "model": "all-MiniLM-L6-v2",
+      "dimension": 384,
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "is_mock": false
+    },
+    "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "reranker_device": "cpu",
+    "reranker_mode": "neural_loaded (cross-encoder/ms-marco-MiniLM-L-6-v2)",
+    "is_neural_reranker": true,
+    "llm_provider": "mock",
+    "is_real_llm": false
+  },
+  "limitations": [
+    "Ground truth based on 25 curated technical queries targeting a small indexed corpus.",
+    "Sample size is directional and not statistically conclusive.",
+    "The index contains only 41 documents / 41 chunks; with so few candidates, Recall@5/@10 saturate and cannot separate retrievers. Rank-sensitive metrics (Recall@1, MRR, NDCG) are the informative ones.",
+    "Relevance labels are document-level and author-assigned; no human adjudication or inter-annotator agreement.",
+    "Answer evaluation executed with deterministic Mock LLM provider. Live model variance not measured."
+  ],
+  "variants": {
+    "variant_a_bm25": {
+      "variant_id": "variant_a_bm25",
+      "variant_name": "Variant A: BM25 Lexical Retrieval",
+      "description": "Pure keyword search via OpenSearch / in-memory inverted index",
+      "total_queries": 25,
+      "executed_queries": 25,
+      "reranker_mode": "none",
+      "is_neural_reranker": false,
+      "llm_provider": "none",
+      "is_real_llm": false,
+      "metric_distributions": {
+        "recall_at_1": {
+          "mean": 0.86,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.2291,
+          "count": 25
+        },
+        "recall_at_5": {
+          "mean": 0.94,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1658,
+          "count": 25
+        },
+        "recall_at_10": {
+          "mean": 0.96,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1384,
+          "count": 25
+        },
+        "precision_at_1": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "precision_at_5": {
+          "mean": 0.232,
+          "median": 0.2,
+          "min_val": 0.2,
+          "max_val": 0.4,
+          "std_dev": 0.0748,
+          "count": 25
+        },
+        "precision_at_10": {
+          "mean": 0.12,
+          "median": 0.1,
+          "min_val": 0.1,
+          "max_val": 0.2,
+          "std_dev": 0.0408,
+          "count": 25
+        },
+        "mrr": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "ndcg_at_5": {
+          "mean": 0.9536,
+          "median": 1.0,
+          "min_val": 0.6131,
+          "max_val": 1.0,
+          "std_dev": 0.1283,
+          "count": 25
+        },
+        "ndcg_at_10": {
+          "mean": 0.9623,
+          "median": 1.0,
+          "min_val": 0.6131,
+          "max_val": 1.0,
+          "std_dev": 0.1103,
+          "count": 25
+        },
+        "evidence_dimension_coverage": {
+          "mean": 0.8913,
+          "median": 0.9,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1325,
+          "count": 25
+        },
+        "latency_ms": {
+          "mean": 99.0072,
+          "median": 18.44,
+          "min_val": 12.37,
+          "max_val": 2029.34,
+          "std_dev": 402.165,
+          "count": 25
+        }
+      },
+      "mean_retrieval_metrics": {
+        "recall_at_1": 0.86,
+        "recall_at_5": 0.94,
+        "recall_at_10": 0.96,
+        "precision_at_1": 1.0,
+        "precision_at_5": 0.232,
+        "precision_at_10": 0.12,
+        "mrr": 1.0,
+        "ndcg_at_5": 0.9536,
+        "ndcg_at_10": 0.9623,
+        "evidence_dimension_coverage": 0.8913,
+        "latency_ms": 99.0072
+      },
+      "mean_answer_metrics": {},
+      "mean_latency_metrics": {
+        "total_latency_ms": 99.01,
+        "retrieval_latency_ms": 99.01
+      },
+      "query_evaluations": [
+        {
+          "query_id": "ret_01_factual_rag",
+          "query_text": "What is Retrieval-Augmented Generation for knowledge-intensive NLP tasks?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2203.02155",
+              "2302.04761",
+              "1910.10683",
+              "2005.14165"
+            ],
+            "latency_ms": 2029.34
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 2029.3373000022257,
+            "total_latency_ms": 2029.3373000022257
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_02_factual_dpr",
+          "query_text": "What is Dense Passage Retrieval and how does it encode questions and passages?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "2302.04761",
+              "1907.11692"
+            ],
+            "latency_ms": 19.46
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 19.46089998818934,
+            "total_latency_ms": 19.46089998818934
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_03_factual_transformer",
+          "query_text": "What is the scaled dot-product attention formula in the Transformer architecture?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "2010.11929",
+              "2312.00752",
+              "2004.04906",
+              "2004.05150"
+            ],
+            "latency_ms": 15.44
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 15.444899996509776,
+            "total_latency_ms": 15.444899996509776
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_04_factual_sbert",
+          "query_text": "What is Sentence-BERT and how does it compute sentence embeddings?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "0905.0001",
+              "2302.04761",
+              "1409.0473",
+              "1409.3215"
+            ],
+            "latency_ms": 15.98
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 15.983700010110624,
+            "total_latency_ms": 15.983700010110624
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_05_factual_rrf",
+          "query_text": "What is Reciprocal Rank Fusion and what is the smoothing constant formula?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "2302.04761",
+              "2106.09685",
+              "2101.03961",
+              "2608.09650"
+            ],
+            "latency_ms": 22.25
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 22.253200004342943,
+            "total_latency_ms": 22.253200004342943
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_06_explanatory_rag_types",
+          "query_text": "How do RAG-Sequence and RAG-Token models differ in token generation and attention?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2312.00752",
+              "2302.04761",
+              "2004.05150",
+              "1706.03762"
+            ],
+            "latency_ms": 21.28
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 21.278200001688674,
+            "total_latency_ms": 21.278200001688674
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_07_explanatory_rrf_mechanism",
+          "query_text": "How does Reciprocal Rank Fusion combine ranked search lists without score normalization?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 20,
+            "top_source_ids": [
+              "0905.0001",
+              "2302.04761",
+              "2005.11401",
+              "1409.0473",
+              "1810.04805"
+            ],
+            "latency_ms": 18.67
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 18.66689999587834,
+            "total_latency_ms": 18.66689999587834
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_08_explanatory_sbert_pooling",
+          "query_text": "How does Sentence-BERT use mean pooling and classification objectives on NLI datasets?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2203.02155",
+              "1907.11692",
+              "2103.00020",
+              "1802.05365"
+            ],
+            "latency_ms": 18.55
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 18.54980000643991,
+            "total_latency_ms": 18.54980000643991
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_09_comparative_dpr_vs_bm25",
+          "query_text": "Compare Dense Passage Retrieval and BM25 on top-20 passage retrieval accuracy on Natural Questions.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "2608.09650",
+              "1502.03167"
+            ],
+            "latency_ms": 16.76
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 16.761799997766502,
+            "total_latency_ms": 16.761799997766502
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_10_comparative_cross_vs_bi_encoders",
+          "query_text": "Compare computational complexity and inference latency between cross-encoders and bi-encoders for pairwise sentence similarity.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2608.09650",
+              "1301.3781",
+              "1707.06347",
+              "2101.03961"
+            ],
+            "latency_ms": 17.12
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 17.115099995862693,
+            "total_latency_ms": 17.115099995862693
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_11_comparative_rag_vs_parametric",
+          "query_text": "What are the trade-offs between RAG models and pure parametric language models regarding factual accuracy and knowledge updates?",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2608.09650",
+              "2302.04761",
+              "1707.06347",
+              "1609.03499"
+            ],
+            "latency_ms": 12.37
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 12.374600002658553,
+            "total_latency_ms": 12.374600002658553
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_12_comparative_hybrid_bm25_dpr",
+          "query_text": "Compare combining BM25 lexical search with dense passage retrieval versus individual retrieval approaches.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "0905.0001",
+              "2005.11401",
+              "2608.09650",
+              "1910.10683"
+            ],
+            "latency_ms": 17.59
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 17.59469999524299,
+            "total_latency_ms": 17.59469999524299
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_13_causal_why_rag_reduces_hallucination",
+          "query_text": "Why does retrieval augmentation reduce hallucinations and improve factual specificity in language model generation?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.6667,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2203.02155",
+              "2210.11416",
+              "0905.0001",
+              "2106.09685"
+            ],
+            "latency_ms": 19.46
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 19.458299997495487,
+            "total_latency_ms": 19.458299997495487
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_14_causal_why_transformers_parallelize",
+          "query_text": "Why do self-attention mechanisms in Transformers enable faster training and parallelization compared to recurrent neural networks?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "2312.00752",
+              "2004.05150",
+              "2010.11929",
+              "1301.3781"
+            ],
+            "latency_ms": 19.8
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 19.797300003119744,
+            "total_latency_ms": 19.797300003119744
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_15_causal_why_cross_encoders_are_slow",
+          "query_text": "Why do cross-encoders suffer from quadratic scaling overhead when evaluating large corpora for semantic search?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.5,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2005.14165",
+              "2608.09650",
+              "2005.11401",
+              "2004.04906"
+            ],
+            "latency_ms": 15.67
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 15.673600006266497,
+            "total_latency_ms": 15.673600006266497
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_16_procedural_how_to_train_dpr",
+          "query_text": "How to train dense passage retrieval models using in-batch negatives and hard negative mining?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "1502.03167",
+              "2005.11401",
+              "0905.0001",
+              "2302.13971"
+            ],
+            "latency_ms": 18.44
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 18.439200008288026,
+            "total_latency_ms": 18.439200008288026
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_17_procedural_how_to_train_sbert",
+          "query_text": "How to fine-tune Siamese BERT models with triplet loss and classification objectives?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2305.18290",
+              "1910.10683",
+              "2203.02155",
+              "1810.04805"
+            ],
+            "latency_ms": 20.2
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 20.202100000460632,
+            "total_latency_ms": 20.202100000460632
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_18_procedural_how_to_finetune_rag",
+          "query_text": "How to fine-tune RAG models jointly across retriever and generator components for downstream QA tasks?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2302.04761",
+              "2203.02155",
+              "1802.05365",
+              "1810.04805"
+            ],
+            "latency_ms": 17.5
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 17.503800001577474,
+            "total_latency_ms": 17.503800001577474
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_19_procedural_medical_reranking",
+          "query_text": "How to apply listwise cross-encoder fine-tuning for LLM rerankers in clinical and medical procedure reranking?",
+          "intent": "PROCEDURAL",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "2305.18290",
+              "1908.10084",
+              "2307.09288",
+              "2203.02155"
+            ],
+            "latency_ms": 18.4
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 18.40309999533929,
+            "total_latency_ms": 18.40309999533929
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_20_multihop_dpr_and_rag",
+          "query_text": "Which neural retriever model introduced in 2020 was adopted as the dense non-parametric memory in the original RAG architecture?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 0.5,
+            "recall_at_10": 0.5,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.6131,
+            "ndcg_at_10": 0.6131,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1409.3215",
+              "2103.00020",
+              "1412.6980",
+              "1502.03167"
+            ],
+            "latency_ms": 19.08
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 19.08450000337325,
+            "total_latency_ms": 19.08450000337325
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_21_multihop_sbert_and_transformers",
+          "query_text": "How does Sentence-BERT build upon the multi-head self-attention Transformer to derive fixed-dimensional sentence embeddings?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1706.03762",
+              "1409.0473",
+              "2004.05150",
+              "2004.04906"
+            ],
+            "latency_ms": 29.26
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 29.263500007800758,
+            "total_latency_ms": 29.263500007800758
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_22_survey_rag_landscape",
+          "query_text": "Comprehensive survey of retrieval-augmented generation architectures, indexing methods, and open-domain question answering benchmarks.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.8,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.04906",
+              "1910.10683",
+              "2204.02311",
+              "2005.14165"
+            ],
+            "latency_ms": 22.35
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 22.34650000173133,
+            "total_latency_ms": 22.34650000173133
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_23_survey_rank_aggregation",
+          "query_text": "Overview of unsupervised rank aggregation methods combining lexical BM25 and neural dense representations.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.9,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "2004.04906",
+              "2305.18290",
+              "1609.02907",
+              "2608.09650"
+            ],
+            "latency_ms": 17.28
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 17.276500002481043,
+            "total_latency_ms": 17.276500002481043
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_24_trend_neural_reranking_advances",
+          "query_text": "What are recent trends and state-of-the-art advances in cross-encoder neural rerankers and listwise instruction tuning?",
+          "intent": "TREND",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 0.5,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.6131,
+            "ndcg_at_10": 0.8316,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "1409.0473",
+              "1810.04805",
+              "2005.14165",
+              "2210.11416"
+            ],
+            "latency_ms": 15.98
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 15.984800003934652,
+            "total_latency_ms": 15.984800003934652
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_25_trend_reasoning_scaling_laws",
+          "query_text": "What are recent advances and scaling laws in reasoning models for transformer architectures?",
+          "intent": "TREND",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 0.5,
+            "recall_at_10": 0.5,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.6131,
+            "ndcg_at_10": 0.6131,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "test.integration.001",
+              "2312.00752",
+              "2005.14165",
+              "2204.02311",
+              "2201.11903"
+            ],
+            "latency_ms": 16.95
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 16.947099997196347,
+            "total_latency_ms": 16.947099997196347
+          },
+          "notes": []
+        }
+      ],
+      "total_wall_clock_ms": 2481.14
+    },
+    "variant_b_dense": {
+      "variant_id": "variant_b_dense",
+      "variant_name": "Variant B: Dense Vector Retrieval",
+      "description": "Pure dense semantic embedding search via Qdrant / in-memory vector index",
+      "total_queries": 25,
+      "executed_queries": 25,
+      "reranker_mode": "none",
+      "is_neural_reranker": false,
+      "llm_provider": "none",
+      "is_real_llm": false,
+      "metric_distributions": {
+        "recall_at_1": {
+          "mean": 0.76,
+          "median": 1.0,
+          "min_val": 0.0,
+          "max_val": 1.0,
+          "std_dev": 0.3571,
+          "count": 25
+        },
+        "recall_at_5": {
+          "mean": 0.98,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1,
+          "count": 25
+        },
+        "recall_at_10": {
+          "mean": 0.98,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1,
+          "count": 25
+        },
+        "precision_at_1": {
+          "mean": 0.88,
+          "median": 1.0,
+          "min_val": 0.0,
+          "max_val": 1.0,
+          "std_dev": 0.3317,
+          "count": 25
+        },
+        "precision_at_5": {
+          "mean": 0.248,
+          "median": 0.2,
+          "min_val": 0.2,
+          "max_val": 0.4,
+          "std_dev": 0.0872,
+          "count": 25
+        },
+        "precision_at_10": {
+          "mean": 0.124,
+          "median": 0.1,
+          "min_val": 0.1,
+          "max_val": 0.2,
+          "std_dev": 0.0436,
+          "count": 25
+        },
+        "mrr": {
+          "mean": 0.9333,
+          "median": 1.0,
+          "min_val": 0.3333,
+          "max_val": 1.0,
+          "std_dev": 0.1863,
+          "count": 25
+        },
+        "ndcg_at_5": {
+          "mean": 0.9249,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.152,
+          "count": 25
+        },
+        "ndcg_at_10": {
+          "mean": 0.9249,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.152,
+          "count": 25
+        },
+        "evidence_dimension_coverage": {
+          "mean": 0.8913,
+          "median": 0.9,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1325,
+          "count": 25
+        },
+        "latency_ms": {
+          "mean": 182.6024,
+          "median": 64.43,
+          "min_val": 53.31,
+          "max_val": 2872.37,
+          "std_dev": 561.0224,
+          "count": 25
+        }
+      },
+      "mean_retrieval_metrics": {
+        "recall_at_1": 0.76,
+        "recall_at_5": 0.98,
+        "recall_at_10": 0.98,
+        "precision_at_1": 0.88,
+        "precision_at_5": 0.248,
+        "precision_at_10": 0.124,
+        "mrr": 0.9333,
+        "ndcg_at_5": 0.9249,
+        "ndcg_at_10": 0.9249,
+        "evidence_dimension_coverage": 0.8913,
+        "latency_ms": 182.6024
+      },
+      "mean_answer_metrics": {},
+      "mean_latency_metrics": {
+        "total_latency_ms": 182.6,
+        "retrieval_latency_ms": 182.6
+      },
+      "query_evaluations": [
+        {
+          "query_id": "ret_01_factual_rag",
+          "query_text": "What is Retrieval-Augmented Generation for knowledge-intensive NLP tasks?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.04906",
+              "2005.14165",
+              "1910.10683",
+              "1810.04805"
+            ],
+            "latency_ms": 2872.37
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 2872.3733000078937,
+            "total_latency_ms": 2872.3733000078937
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_02_factual_dpr",
+          "query_text": "What is Dense Passage Retrieval and how does it encode questions and passages?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "2004.05150",
+              "1910.10683"
+            ],
+            "latency_ms": 62.23
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 62.23159999353811,
+            "total_latency_ms": 62.23159999353811
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_03_factual_transformer",
+          "query_text": "What is the scaled dot-product attention formula in the Transformer architecture?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "test.integration.001",
+              "2010.11929",
+              "2004.05150",
+              "2312.00752"
+            ],
+            "latency_ms": 54.93
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 54.93110000679735,
+            "total_latency_ms": 54.93110000679735
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_04_factual_sbert",
+          "query_text": "What is Sentence-BERT and how does it compute sentence embeddings?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1810.04805",
+              "1802.05365",
+              "2004.04906",
+              "1907.11692"
+            ],
+            "latency_ms": 56.79
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 56.78810000244994,
+            "total_latency_ms": 56.78810000244994
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_05_factual_rrf",
+          "query_text": "What is Reciprocal Rank Fusion and what is the smoothing constant formula?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "2006.11239",
+              "1412.6980",
+              "1706.03762",
+              "2608.09650"
+            ],
+            "latency_ms": 65.83
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 65.8328999998048,
+            "total_latency_ms": 65.8328999998048
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_06_explanatory_rag_types",
+          "query_text": "How do RAG-Sequence and RAG-Token models differ in token generation and attention?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.05150",
+              "1706.03762",
+              "1409.3215",
+              "1810.04805"
+            ],
+            "latency_ms": 58.91
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 58.913100001518615,
+            "total_latency_ms": 58.913100001518615
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_07_explanatory_rrf_mechanism",
+          "query_text": "How does Reciprocal Rank Fusion combine ranked search lists without score normalization?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "2608.09650",
+              "2004.04906",
+              "test.integration.001",
+              "1706.03762"
+            ],
+            "latency_ms": 61.66
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 61.65550000150688,
+            "total_latency_ms": 61.65550000150688
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_08_explanatory_sbert_pooling",
+          "query_text": "How does Sentence-BERT use mean pooling and classification objectives on NLI datasets?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 0.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 0.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 0.5,
+            "ndcg_at_5": 0.6309,
+            "ndcg_at_10": 0.6309,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1810.04805",
+              "1908.10084",
+              "2004.04906",
+              "1907.11692",
+              "1802.05365"
+            ],
+            "latency_ms": 53.71
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 53.70640000910498,
+            "total_latency_ms": 53.70640000910498
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_09_comparative_dpr_vs_bm25",
+          "query_text": "Compare Dense Passage Retrieval and BM25 on top-20 passage retrieval accuracy on Natural Questions.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "1910.10683",
+              "2201.11903"
+            ],
+            "latency_ms": 69.2
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 69.19689998903777,
+            "total_latency_ms": 69.19689998903777
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_10_comparative_cross_vs_bi_encoders",
+          "query_text": "Compare computational complexity and inference latency between cross-encoders and bi-encoders for pairwise sentence similarity.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1301.3781",
+              "2005.11401",
+              "1802.05365",
+              "1409.0473"
+            ],
+            "latency_ms": 60.4
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 60.40089999441989,
+            "total_latency_ms": 60.40089999441989
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_11_comparative_rag_vs_parametric",
+          "query_text": "What are the trade-offs between RAG models and pure parametric language models regarding factual accuracy and knowledge updates?",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1907.11692",
+              "1810.04805",
+              "2005.14165",
+              "2302.04761"
+            ],
+            "latency_ms": 55.08
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 55.08279999776278,
+            "total_latency_ms": 55.08279999776278
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_12_comparative_hybrid_bm25_dpr",
+          "query_text": "Compare combining BM25 lexical search with dense passage retrieval versus individual retrieval approaches.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "0905.0001",
+              "2005.11401",
+              "1409.3215",
+              "2608.09650"
+            ],
+            "latency_ms": 67.96
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 67.95769999735057,
+            "total_latency_ms": 67.95769999735057
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_13_causal_why_rag_reduces_hallucination",
+          "query_text": "Why does retrieval augmentation reduce hallucinations and improve factual specificity in language model generation?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.6667,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.05150",
+              "2005.14165",
+              "1810.04805",
+              "test.integration.001"
+            ],
+            "latency_ms": 65.89
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 65.88510000437964,
+            "total_latency_ms": 65.88510000437964
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_14_causal_why_transformers_parallelize",
+          "query_text": "Why do self-attention mechanisms in Transformers enable faster training and parallelization compared to recurrent neural networks?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "test.integration.001",
+              "2312.00752",
+              "2010.11929",
+              "2004.05150"
+            ],
+            "latency_ms": 56.66
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 56.65980000048876,
+            "total_latency_ms": 56.65980000048876
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_15_causal_why_cross_encoders_are_slow",
+          "query_text": "Why do cross-encoders suffer from quadratic scaling overhead when evaluating large corpora for semantic search?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 0.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 0.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 0.3333,
+            "ndcg_at_5": 0.5,
+            "ndcg_at_10": 0.5,
+            "evidence_dimension_coverage": 0.5,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "test.integration.001",
+              "1908.10084",
+              "2004.04906",
+              "2608.09650"
+            ],
+            "latency_ms": 73.26
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 73.25570000102744,
+            "total_latency_ms": 73.25570000102744
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_16_procedural_how_to_train_dpr",
+          "query_text": "How to train dense passage retrieval models using in-batch negatives and hard negative mining?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "2005.14165",
+              "1802.05365"
+            ],
+            "latency_ms": 64.93
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 64.93100000079721,
+            "total_latency_ms": 64.93100000079721
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_17_procedural_how_to_train_sbert",
+          "query_text": "How to fine-tune Siamese BERT models with triplet loss and classification objectives?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1907.11692",
+              "1810.04805",
+              "2307.09288",
+              "2004.04906"
+            ],
+            "latency_ms": 53.31
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 53.31080000905786,
+            "total_latency_ms": 53.31080000905786
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_18_procedural_how_to_finetune_rag",
+          "query_text": "How to fine-tune RAG models jointly across retriever and generator components for downstream QA tasks?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1907.11692",
+              "2004.04906",
+              "2004.05150",
+              "1910.10683"
+            ],
+            "latency_ms": 64.43
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 64.42819999938365,
+            "total_latency_ms": 64.42819999938365
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_19_procedural_medical_reranking",
+          "query_text": "How to apply listwise cross-encoder fine-tuning for LLM rerankers in clinical and medical procedure reranking?",
+          "intent": "PROCEDURAL",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "0905.0001",
+              "2106.09685",
+              "1907.11692",
+              "1409.3215"
+            ],
+            "latency_ms": 55.11
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 55.1123000041116,
+            "total_latency_ms": 55.1123000041116
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_20_multihop_dpr_and_rag",
+          "query_text": "Which neural retriever model introduced in 2020 was adopted as the dense non-parametric memory in the original RAG architecture?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.8503,
+            "ndcg_at_10": 0.8503,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1706.03762",
+              "2312.00752",
+              "1907.11692",
+              "2004.04906"
+            ],
+            "latency_ms": 72.63
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 72.63020001119003,
+            "total_latency_ms": 72.63020001119003
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_21_multihop_sbert_and_transformers",
+          "query_text": "How does Sentence-BERT build upon the multi-head self-attention Transformer to derive fixed-dimensional sentence embeddings?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 0.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 0.5,
+            "ndcg_at_5": 0.6509,
+            "ndcg_at_10": 0.6509,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1810.04805",
+              "1706.03762",
+              "2004.05150",
+              "1908.10084",
+              "1802.05365"
+            ],
+            "latency_ms": 62.85
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 62.85010000283364,
+            "total_latency_ms": 62.85010000283364
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_22_survey_rag_landscape",
+          "query_text": "Comprehensive survey of retrieval-augmented generation architectures, indexing methods, and open-domain question answering benchmarks.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.8,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.04906",
+              "1810.04805",
+              "2608.09650",
+              "2005.14165"
+            ],
+            "latency_ms": 85.02
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 85.01529999193735,
+            "total_latency_ms": 85.01529999193735
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_23_survey_rank_aggregation",
+          "query_text": "Overview of unsupervised rank aggregation methods combining lexical BM25 and neural dense representations.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.9,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "2004.04906",
+              "2608.09650",
+              "1301.3781",
+              "1409.3215"
+            ],
+            "latency_ms": 188.82
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 188.81759999203496,
+            "total_latency_ms": 188.81759999203496
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_24_trend_neural_reranking_advances",
+          "query_text": "What are recent trends and state-of-the-art advances in cross-encoder neural rerankers and listwise instruction tuning?",
+          "intent": "TREND",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 0.5,
+            "recall_at_10": 0.5,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.6131,
+            "ndcg_at_10": 0.6131,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "2106.09685",
+              "test.integration.001",
+              "0905.0001",
+              "1907.11692"
+            ],
+            "latency_ms": 102.99
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 102.98559999500867,
+            "total_latency_ms": 102.98559999500867
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_25_trend_reasoning_scaling_laws",
+          "query_text": "What are recent advances and scaling laws in reasoning models for transformer architectures?",
+          "intent": "TREND",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.8772,
+            "ndcg_at_10": 0.8772,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "test.integration.001",
+              "2312.00752",
+              "2010.11929",
+              "1706.03762",
+              "2201.11903"
+            ],
+            "latency_ms": 80.09
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 80.08859999245033,
+            "total_latency_ms": 80.08859999245033
+          },
+          "notes": []
+        }
+      ],
+      "total_wall_clock_ms": 4572.5
+    },
+    "variant_c_hybrid": {
+      "variant_id": "variant_c_hybrid",
+      "variant_name": "Variant C: Hybrid Retrieval (BM25 + Dense)",
+      "description": "Lexical and dense fusion using Reciprocal Rank Fusion (RRF)",
+      "total_queries": 25,
+      "executed_queries": 25,
+      "reranker_mode": "none",
+      "is_neural_reranker": false,
+      "llm_provider": "none",
+      "is_real_llm": false,
+      "metric_distributions": {
+        "recall_at_1": {
+          "mean": 0.86,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.2291,
+          "count": 25
+        },
+        "recall_at_5": {
+          "mean": 0.96,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1384,
+          "count": 25
+        },
+        "recall_at_10": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "precision_at_1": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "precision_at_5": {
+          "mean": 0.24,
+          "median": 0.2,
+          "min_val": 0.2,
+          "max_val": 0.4,
+          "std_dev": 0.0816,
+          "count": 25
+        },
+        "precision_at_10": {
+          "mean": 0.128,
+          "median": 0.1,
+          "min_val": 0.1,
+          "max_val": 0.2,
+          "std_dev": 0.0458,
+          "count": 25
+        },
+        "mrr": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "ndcg_at_5": {
+          "mean": 0.9641,
+          "median": 1.0,
+          "min_val": 0.6131,
+          "max_val": 1.0,
+          "std_dev": 0.1085,
+          "count": 25
+        },
+        "ndcg_at_10": {
+          "mean": 0.9797,
+          "median": 1.0,
+          "min_val": 0.7977,
+          "max_val": 1.0,
+          "std_dev": 0.0574,
+          "count": 25
+        },
+        "evidence_dimension_coverage": {
+          "mean": 0.8913,
+          "median": 0.9,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1325,
+          "count": 25
+        },
+        "latency_ms": {
+          "mean": 90.8304,
+          "median": 88.9,
+          "min_val": 69.87,
+          "max_val": 127.64,
+          "std_dev": 14.0914,
+          "count": 25
+        }
+      },
+      "mean_retrieval_metrics": {
+        "recall_at_1": 0.86,
+        "recall_at_5": 0.96,
+        "recall_at_10": 1.0,
+        "precision_at_1": 1.0,
+        "precision_at_5": 0.24,
+        "precision_at_10": 0.128,
+        "mrr": 1.0,
+        "ndcg_at_5": 0.9641,
+        "ndcg_at_10": 0.9797,
+        "evidence_dimension_coverage": 0.8913,
+        "latency_ms": 90.8304
+      },
+      "mean_answer_metrics": {},
+      "mean_latency_metrics": {
+        "total_latency_ms": 90.83,
+        "retrieval_latency_ms": 90.83
+      },
+      "query_evaluations": [
+        {
+          "query_id": "ret_01_factual_rag",
+          "query_text": "What is Retrieval-Augmented Generation for knowledge-intensive NLP tasks?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.04906",
+              "2005.14165",
+              "1910.10683",
+              "2203.02155"
+            ],
+            "latency_ms": 81.75
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 81.75490000576247,
+            "total_latency_ms": 81.75490000576247
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_02_factual_dpr",
+          "query_text": "What is Dense Passage Retrieval and how does it encode questions and passages?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "1802.05365",
+              "2004.05150"
+            ],
+            "latency_ms": 85.45
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 85.44680000341032,
+            "total_latency_ms": 85.44680000341032
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_03_factual_transformer",
+          "query_text": "What is the scaled dot-product attention formula in the Transformer architecture?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "2010.11929",
+              "2312.00752",
+              "2004.05150",
+              "test.integration.001"
+            ],
+            "latency_ms": 85.63
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 85.63030000368599,
+            "total_latency_ms": 85.63030000368599
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_04_factual_sbert",
+          "query_text": "What is Sentence-BERT and how does it compute sentence embeddings?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1810.04805",
+              "2004.04906",
+              "1409.3215",
+              "1907.11692"
+            ],
+            "latency_ms": 81.08
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 81.07559999916703,
+            "total_latency_ms": 81.07559999916703
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_05_factual_rrf",
+          "query_text": "What is Reciprocal Rank Fusion and what is the smoothing constant formula?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "1412.6980",
+              "2608.09650",
+              "2106.09685",
+              "2305.18290"
+            ],
+            "latency_ms": 78.75
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 78.74729999457486,
+            "total_latency_ms": 78.74729999457486
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_06_explanatory_rag_types",
+          "query_text": "How do RAG-Sequence and RAG-Token models differ in token generation and attention?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.05150",
+              "1706.03762",
+              "1409.3215",
+              "2312.00752"
+            ],
+            "latency_ms": 127.64
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 127.63509999786038,
+            "total_latency_ms": 127.63509999786038
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_07_explanatory_rrf_mechanism",
+          "query_text": "How does Reciprocal Rank Fusion combine ranked search lists without score normalization?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "2005.11401",
+              "2608.09650",
+              "2106.09685",
+              "1409.0473"
+            ],
+            "latency_ms": 107.41
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 107.40619999705814,
+            "total_latency_ms": 107.40619999705814
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_08_explanatory_sbert_pooling",
+          "query_text": "How does Sentence-BERT use mean pooling and classification objectives on NLI datasets?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1907.11692",
+              "1802.05365",
+              "1910.10683",
+              "1810.04805"
+            ],
+            "latency_ms": 123.41
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 123.40600001334678,
+            "total_latency_ms": 123.40600001334678
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_09_comparative_dpr_vs_bm25",
+          "query_text": "Compare Dense Passage Retrieval and BM25 on top-20 passage retrieval accuracy on Natural Questions.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "2608.09650",
+              "1810.04805"
+            ],
+            "latency_ms": 85.86
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 85.85620000667404,
+            "total_latency_ms": 85.85620000667404
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_10_comparative_cross_vs_bi_encoders",
+          "query_text": "Compare computational complexity and inference latency between cross-encoders and bi-encoders for pairwise sentence similarity.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1301.3781",
+              "2608.09650",
+              "2004.04906",
+              "2106.09685"
+            ],
+            "latency_ms": 97.33
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 97.33089999645017,
+            "total_latency_ms": 97.33089999645017
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_11_comparative_rag_vs_parametric",
+          "query_text": "What are the trade-offs between RAG models and pure parametric language models regarding factual accuracy and knowledge updates?",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2302.04761",
+              "2005.14165",
+              "1907.11692",
+              "1810.04805"
+            ],
+            "latency_ms": 90.55
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 90.55049999733455,
+            "total_latency_ms": 90.55049999733455
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_12_comparative_hybrid_bm25_dpr",
+          "query_text": "Compare combining BM25 lexical search with dense passage retrieval versus individual retrieval approaches.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "0905.0001",
+              "2005.11401",
+              "2608.09650",
+              "1910.10683"
+            ],
+            "latency_ms": 96.35
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 96.34940000250936,
+            "total_latency_ms": 96.34940000250936
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_13_causal_why_rag_reduces_hallucination",
+          "query_text": "Why does retrieval augmentation reduce hallucinations and improve factual specificity in language model generation?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.6667,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2203.02155",
+              "2210.11416",
+              "2106.09685",
+              "2004.04906"
+            ],
+            "latency_ms": 100.75
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 100.7510000054026,
+            "total_latency_ms": 100.7510000054026
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_14_causal_why_transformers_parallelize",
+          "query_text": "Why do self-attention mechanisms in Transformers enable faster training and parallelization compared to recurrent neural networks?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "2312.00752",
+              "2004.05150",
+              "2010.11929",
+              "1502.03167"
+            ],
+            "latency_ms": 81.33
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 81.33099999395199,
+            "total_latency_ms": 81.33099999395199
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_15_causal_why_cross_encoders_are_slow",
+          "query_text": "Why do cross-encoders suffer from quadratic scaling overhead when evaluating large corpora for semantic search?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.5,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2005.14165",
+              "2608.09650",
+              "0905.0001",
+              "2004.04906"
+            ],
+            "latency_ms": 70.85
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 70.8537000027718,
+            "total_latency_ms": 70.8537000027718
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_16_procedural_how_to_train_dpr",
+          "query_text": "How to train dense passage retrieval models using in-batch negatives and hard negative mining?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "1802.05365",
+              "2005.14165"
+            ],
+            "latency_ms": 93.2
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 93.19569999934174,
+            "total_latency_ms": 93.19569999934174
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_17_procedural_how_to_train_sbert",
+          "query_text": "How to fine-tune Siamese BERT models with triplet loss and classification objectives?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1810.04805",
+              "1907.11692",
+              "2203.02155",
+              "2307.09288"
+            ],
+            "latency_ms": 94.39
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 94.3944000027841,
+            "total_latency_ms": 94.3944000027841
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_18_procedural_how_to_finetune_rag",
+          "query_text": "How to fine-tune RAG models jointly across retriever and generator components for downstream QA tasks?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1810.04805",
+              "2106.09685",
+              "2302.04761",
+              "2004.04906"
+            ],
+            "latency_ms": 88.9
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 88.9002000039909,
+            "total_latency_ms": 88.9002000039909
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_19_procedural_medical_reranking",
+          "query_text": "How to apply listwise cross-encoder fine-tuning for LLM rerankers in clinical and medical procedure reranking?",
+          "intent": "PROCEDURAL",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "2106.09685",
+              "2305.18290",
+              "1908.10084",
+              "2307.09288"
+            ],
+            "latency_ms": 88.98
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 88.98160001263022,
+            "total_latency_ms": 88.98160001263022
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_20_multihop_dpr_and_rag",
+          "query_text": "Which neural retriever model introduced in 2020 was adopted as the dense non-parametric memory in the original RAG architecture?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.8772,
+            "ndcg_at_10": 0.8772,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1409.3215",
+              "2312.00752",
+              "2004.04906",
+              "2106.09685"
+            ],
+            "latency_ms": 89.68
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 89.67849999316968,
+            "total_latency_ms": 89.67849999316968
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_21_multihop_sbert_and_transformers",
+          "query_text": "How does Sentence-BERT build upon the multi-head self-attention Transformer to derive fixed-dimensional sentence embeddings?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "1908.10084",
+              "2004.05150",
+              "2004.04906",
+              "2010.11929"
+            ],
+            "latency_ms": 78.34
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 78.33540000137873,
+            "total_latency_ms": 78.33540000137873
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_22_survey_rag_landscape",
+          "query_text": "Comprehensive survey of retrieval-augmented generation architectures, indexing methods, and open-domain question answering benchmarks.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.8,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.04906",
+              "1810.04805",
+              "2005.14165",
+              "1910.10683"
+            ],
+            "latency_ms": 80.4
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 80.39540000027046,
+            "total_latency_ms": 80.39540000027046
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_23_survey_rank_aggregation",
+          "query_text": "Overview of unsupervised rank aggregation methods combining lexical BM25 and neural dense representations.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.9,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "2004.04906",
+              "2608.09650",
+              "1301.3781",
+              "2005.11401"
+            ],
+            "latency_ms": 86.04
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 86.0367999994196,
+            "total_latency_ms": 86.0367999994196
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_24_trend_neural_reranking_advances",
+          "query_text": "What are recent trends and state-of-the-art advances in cross-encoder neural rerankers and listwise instruction tuning?",
+          "intent": "TREND",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 0.5,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.6131,
+            "ndcg_at_10": 0.8175,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "1810.04805",
+              "2210.11416",
+              "2004.05150",
+              "2005.14165"
+            ],
+            "latency_ms": 106.82
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 106.82030000316445,
+            "total_latency_ms": 106.82030000316445
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_25_trend_reasoning_scaling_laws",
+          "query_text": "What are recent advances and scaling laws in reasoning models for transformer architectures?",
+          "intent": "TREND",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 0.5,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.6131,
+            "ndcg_at_10": 0.7977,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "test.integration.001",
+              "2312.00752",
+              "2201.11903",
+              "2204.02311",
+              "2101.03961"
+            ],
+            "latency_ms": 69.87
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 69.86509999842383,
+            "total_latency_ms": 69.86509999842383
+          },
+          "notes": []
+        }
+      ],
+      "total_wall_clock_ms": 2277.32
+    },
+    "variant_d_hybrid_reranker": {
+      "variant_id": "variant_d_hybrid_reranker",
+      "variant_name": "Variant D: Hybrid + Cross-Encoder Reranker",
+      "description": "Two-stage: Hybrid candidate search followed by Cross-Encoder scoring",
+      "total_queries": 25,
+      "executed_queries": 25,
+      "reranker_mode": "neural_loaded (cross-encoder/ms-marco-MiniLM-L-6-v2)",
+      "is_neural_reranker": true,
+      "llm_provider": "none",
+      "is_real_llm": false,
+      "metric_distributions": {
+        "recall_at_1": {
+          "mean": 0.86,
+          "median": 1.0,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.2291,
+          "count": 25
+        },
+        "recall_at_5": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "recall_at_10": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "precision_at_1": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "precision_at_5": {
+          "mean": 0.256,
+          "median": 0.2,
+          "min_val": 0.2,
+          "max_val": 0.4,
+          "std_dev": 0.0917,
+          "count": 25
+        },
+        "precision_at_10": {
+          "mean": 0.128,
+          "median": 0.1,
+          "min_val": 0.1,
+          "max_val": 0.2,
+          "std_dev": 0.0458,
+          "count": 25
+        },
+        "mrr": {
+          "mean": 1.0,
+          "median": 1.0,
+          "min_val": 1.0,
+          "max_val": 1.0,
+          "std_dev": 0.0,
+          "count": 25
+        },
+        "ndcg_at_5": {
+          "mean": 0.9936,
+          "median": 1.0,
+          "min_val": 0.9197,
+          "max_val": 1.0,
+          "std_dev": 0.0222,
+          "count": 25
+        },
+        "ndcg_at_10": {
+          "mean": 0.9936,
+          "median": 1.0,
+          "min_val": 0.9197,
+          "max_val": 1.0,
+          "std_dev": 0.0222,
+          "count": 25
+        },
+        "evidence_dimension_coverage": {
+          "mean": 0.8913,
+          "median": 0.9,
+          "min_val": 0.5,
+          "max_val": 1.0,
+          "std_dev": 0.1325,
+          "count": 25
+        },
+        "latency_ms": {
+          "mean": 5629.7984,
+          "median": 5035.34,
+          "min_val": 3465.69,
+          "max_val": 10071.36,
+          "std_dev": 1622.9984,
+          "count": 25
+        }
+      },
+      "mean_retrieval_metrics": {
+        "recall_at_1": 0.86,
+        "recall_at_5": 1.0,
+        "recall_at_10": 1.0,
+        "precision_at_1": 1.0,
+        "precision_at_5": 0.256,
+        "precision_at_10": 0.128,
+        "mrr": 1.0,
+        "ndcg_at_5": 0.9936,
+        "ndcg_at_10": 0.9936,
+        "evidence_dimension_coverage": 0.8913,
+        "latency_ms": 5629.7984
+      },
+      "mean_answer_metrics": {},
+      "mean_latency_metrics": {
+        "total_latency_ms": 5629.8,
+        "reranking_latency_ms": 5473.72,
+        "retrieval_latency_ms": 155.95
+      },
+      "query_evaluations": [
+        {
+          "query_id": "ret_01_factual_rag",
+          "query_text": "What is Retrieval-Augmented Generation for knowledge-intensive NLP tasks?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1910.10683",
+              "2005.14165",
+              "2608.09650",
+              "2004.04906"
+            ],
+            "latency_ms": 3697.33
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 101.39049999997951,
+            "reranking_latency_ms": 3595.92,
+            "total_latency_ms": 3697.327400004724
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_02_factual_dpr",
+          "query_text": "What is Dense Passage Retrieval and how does it encode questions and passages?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "2608.09650",
+              "1810.04805"
+            ],
+            "latency_ms": 4960.7
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 86.19709999766201,
+            "reranking_latency_ms": 4874.27,
+            "total_latency_ms": 4960.704199998872
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_03_factual_transformer",
+          "query_text": "What is the scaled dot-product attention formula in the Transformer architecture?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "2004.05150",
+              "2010.11929",
+              "2312.00752",
+              "test.integration.001"
+            ],
+            "latency_ms": 7727.62
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 108.12800000712741,
+            "reranking_latency_ms": 7619.31,
+            "total_latency_ms": 7727.617600001395
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_04_factual_sbert",
+          "query_text": "What is Sentence-BERT and how does it compute sentence embeddings?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2004.04906",
+              "1810.04805",
+              "0905.0001",
+              "1907.11692"
+            ],
+            "latency_ms": 10071.36
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 200.41330000094604,
+            "reranking_latency_ms": 9870.82,
+            "total_latency_ms": 10071.357199994964
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_05_factual_rrf",
+          "query_text": "What is Reciprocal Rank Fusion and what is the smoothing constant formula?",
+          "intent": "FACTUAL",
+          "difficulty": "simple",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "1706.03762",
+              "1412.6980",
+              "2006.11239",
+              "2106.09685"
+            ],
+            "latency_ms": 5524.23
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 141.64860000892077,
+            "reranking_latency_ms": 5382.5,
+            "total_latency_ms": 5524.23130000534
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_06_explanatory_rag_types",
+          "query_text": "How do RAG-Sequence and RAG-Token models differ in token generation and attention?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.05150",
+              "2312.00752",
+              "1706.03762",
+              "2302.13971"
+            ],
+            "latency_ms": 7981.57
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 146.70009999827016,
+            "reranking_latency_ms": 7834.8,
+            "total_latency_ms": 7981.570900010411
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_07_explanatory_rrf_mechanism",
+          "query_text": "How does Reciprocal Rank Fusion combine ranked search lists without score normalization?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "0905.0001",
+              "1502.03167",
+              "1706.03762",
+              "2004.04906",
+              "2006.11239"
+            ],
+            "latency_ms": 5579.62
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 66.85109999671113,
+            "reranking_latency_ms": 5512.66,
+            "total_latency_ms": 5579.624699996202
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_08_explanatory_sbert_pooling",
+          "query_text": "How does Sentence-BERT use mean pooling and classification objectives on NLI datasets?",
+          "intent": "EXPLANATORY",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1810.04805",
+              "1910.10683",
+              "2005.14165",
+              "1907.11692"
+            ],
+            "latency_ms": 7656.23
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 115.10719999205321,
+            "reranking_latency_ms": 7540.98,
+            "total_latency_ms": 7656.226599996444
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_09_comparative_dpr_vs_bm25",
+          "query_text": "Compare Dense Passage Retrieval and BM25 on top-20 passage retrieval accuracy on Natural Questions.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "2608.09650",
+              "1810.04805"
+            ],
+            "latency_ms": 7773.79
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 130.13189999037422,
+            "reranking_latency_ms": 7643.55,
+            "total_latency_ms": 7773.792799998773
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_10_comparative_cross_vs_bi_encoders",
+          "query_text": "Compare computational complexity and inference latency between cross-encoders and bi-encoders for pairwise sentence similarity.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2608.09650",
+              "2004.04906",
+              "1301.3781",
+              "0905.0001"
+            ],
+            "latency_ms": 3948.19
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 117.36809999274556,
+            "reranking_latency_ms": 3830.7,
+            "total_latency_ms": 3948.192600000766
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_11_comparative_rag_vs_parametric",
+          "query_text": "What are the trade-offs between RAG models and pure parametric language models regarding factual accuracy and knowledge updates?",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2302.04761",
+              "1810.04805",
+              "2305.18290",
+              "2302.13971"
+            ],
+            "latency_ms": 4710.2
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 129.64680000732187,
+            "reranking_latency_ms": 4580.46,
+            "total_latency_ms": 4710.200600005919
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_12_comparative_hybrid_bm25_dpr",
+          "query_text": "Compare combining BM25 lexical search with dense passage retrieval versus individual retrieval approaches.",
+          "intent": "COMPARATIVE",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "0905.0001",
+              "2005.11401",
+              "2608.09650",
+              "1409.3215"
+            ],
+            "latency_ms": 6323.8
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 117.00959999870975,
+            "reranking_latency_ms": 6206.63,
+            "total_latency_ms": 6323.7974000076065
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_13_causal_why_rag_reduces_hallucination",
+          "query_text": "Why does retrieval augmentation reduce hallucinations and improve factual specificity in language model generation?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.6667,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2204.02311",
+              "2302.04761",
+              "2305.18290",
+              "2210.11416"
+            ],
+            "latency_ms": 6659.6
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 920.9261000069091,
+            "reranking_latency_ms": 5738.59,
+            "total_latency_ms": 6659.596400000737
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_14_causal_why_transformers_parallelize",
+          "query_text": "Why do self-attention mechanisms in Transformers enable faster training and parallelization compared to recurrent neural networks?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "2004.05150",
+              "2312.00752",
+              "1502.03167",
+              "1505.04597"
+            ],
+            "latency_ms": 5010.69
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 125.25930000992958,
+            "reranking_latency_ms": 4885.35,
+            "total_latency_ms": 5010.688700000173
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_15_causal_why_cross_encoders_are_slow",
+          "query_text": "Why do cross-encoders suffer from quadratic scaling overhead when evaluating large corpora for semantic search?",
+          "intent": "CAUSAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.5,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "2004.04906",
+              "2005.14165",
+              "2005.11401",
+              "2608.09650"
+            ],
+            "latency_ms": 4609.39
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 121.8968000030145,
+            "reranking_latency_ms": 4487.33,
+            "total_latency_ms": 4609.385600007954
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_16_procedural_how_to_train_dpr",
+          "query_text": "How to train dense passage retrieval models using in-batch negatives and hard negative mining?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "2005.11401",
+              "0905.0001",
+              "1502.03167",
+              "2302.13971"
+            ],
+            "latency_ms": 5504.79
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 130.86800000746734,
+            "reranking_latency_ms": 5373.79,
+            "total_latency_ms": 5504.791600003955
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_17_procedural_how_to_train_sbert",
+          "query_text": "How to fine-tune Siamese BERT models with triplet loss and classification objectives?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.875,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1810.04805",
+              "2305.18290",
+              "2608.09650",
+              "2106.09685"
+            ],
+            "latency_ms": 6483.89
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 146.86300000175834,
+            "reranking_latency_ms": 6336.88,
+            "total_latency_ms": 6483.889199997066
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_18_procedural_how_to_finetune_rag",
+          "query_text": "How to fine-tune RAG models jointly across retriever and generator components for downstream QA tasks?",
+          "intent": "PROCEDURAL",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2106.09685",
+              "2608.09650",
+              "1910.10683",
+              "2004.04906"
+            ],
+            "latency_ms": 5794.32
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 137.5121000019135,
+            "reranking_latency_ms": 5656.72,
+            "total_latency_ms": 5794.319699998596
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_19_procedural_medical_reranking",
+          "query_text": "How to apply listwise cross-encoder fine-tuning for LLM rerankers in clinical and medical procedure reranking?",
+          "intent": "PROCEDURAL",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 1.0,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.2,
+            "precision_at_10": 0.1,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "1908.10084",
+              "2307.09288",
+              "2305.18290",
+              "2106.09685"
+            ],
+            "latency_ms": 4902.61
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 145.7622000016272,
+            "reranking_latency_ms": 4756.66,
+            "total_latency_ms": 4902.606200004811
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_20_multihop_dpr_and_rag",
+          "query_text": "Which neural retriever model introduced in 2020 was adopted as the dense non-parametric memory in the original RAG architecture?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.9197,
+            "ndcg_at_10": 0.9197,
+            "evidence_dimension_coverage": 0.75,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "1409.3215",
+              "2004.04906",
+              "1706.03762",
+              "1312.5602"
+            ],
+            "latency_ms": 3744.2
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 105.2878999907989,
+            "reranking_latency_ms": 3638.75,
+            "total_latency_ms": 3744.2015999986324
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_21_multihop_sbert_and_transformers",
+          "query_text": "How does Sentence-BERT build upon the multi-head self-attention Transformer to derive fixed-dimensional sentence embeddings?",
+          "intent": "MULTI_HOP",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 1.0,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1908.10084",
+              "1706.03762",
+              "1810.04805",
+              "2004.05150",
+              "2004.04906"
+            ],
+            "latency_ms": 3465.69
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 102.14440000709146,
+            "reranking_latency_ms": 3363.43,
+            "total_latency_ms": 3465.6883999996353
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_22_survey_rag_landscape",
+          "query_text": "Comprehensive survey of retrieval-augmented generation architectures, indexing methods, and open-domain question answering benchmarks.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.8,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2005.11401",
+              "2004.04906",
+              "0905.0001",
+              "2005.14165",
+              "1910.10683"
+            ],
+            "latency_ms": 4043.82
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 138.55489999696147,
+            "reranking_latency_ms": 3905.13,
+            "total_latency_ms": 4043.820799997775
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_23_survey_rank_aggregation",
+          "query_text": "Overview of unsupervised rank aggregation methods combining lexical BM25 and neural dense representations.",
+          "intent": "SURVEY",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.9,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2004.04906",
+              "0905.0001",
+              "2305.18290",
+              "1409.3215",
+              "1609.02907"
+            ],
+            "latency_ms": 5035.34
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 117.64789999870118,
+            "reranking_latency_ms": 4917.49,
+            "total_latency_ms": 5035.335299995495
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_24_trend_neural_reranking_advances",
+          "query_text": "What are recent trends and state-of-the-art advances in cross-encoder neural rerankers and listwise instruction tuning?",
+          "intent": "TREND",
+          "difficulty": "complex",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 1.0,
+            "ndcg_at_10": 1.0,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "2608.09650",
+              "1908.10084",
+              "1810.04805",
+              "1409.0473",
+              "2005.14165"
+            ],
+            "latency_ms": 4516.17
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 107.10979999566916,
+            "reranking_latency_ms": 4408.9,
+            "total_latency_ms": 4516.173099997104
+          },
+          "notes": []
+        },
+        {
+          "query_id": "ret_25_trend_reasoning_scaling_laws",
+          "query_text": "What are recent advances and scaling laws in reasoning models for transformer architectures?",
+          "intent": "TREND",
+          "difficulty": "moderate",
+          "retrieval_metrics": {
+            "recall_at_1": 0.5,
+            "recall_at_5": 1.0,
+            "recall_at_10": 1.0,
+            "precision_at_1": 1.0,
+            "precision_at_5": 0.4,
+            "precision_at_10": 0.2,
+            "mrr": 1.0,
+            "ndcg_at_5": 0.9197,
+            "ndcg_at_10": 0.9197,
+            "evidence_dimension_coverage": 0.8333,
+            "retrieved_count": 25,
+            "top_source_ids": [
+              "1706.03762",
+              "2312.00752",
+              "test.integration.001",
+              "2204.02311",
+              "2010.11929"
+            ],
+            "latency_ms": 5019.81
+          },
+          "answer_metrics": null,
+          "latency_breakdown": {
+            "retrieval_latency_ms": 138.31120000395458,
+            "reranking_latency_ms": 4881.32,
+            "total_latency_ms": 5019.806299998891
+          },
+          "notes": []
+        }
+      ],
+      "total_wall_clock_ms": 140753.5
+    }
+  },
+  "ablation_summary": [
+    {
+      "variant_id": "variant_a_bm25",
+      "variant_name": "Variant A: BM25 Lexical Retrieval",
+      "recall_at_1": 0.86,
+      "recall_at_5": 0.94,
+      "ndcg_at_5": 0.9536,
+      "recall_at_10": 0.96,
+      "precision_at_5": 0.232,
+      "mrr": 1.0,
+      "ndcg_at_10": 0.9623,
+      "dimension_coverage": 0.8913,
+      "avg_latency_ms": 99.0072,
+      "claim_support_rate": null,
+      "citation_coverage": null,
+      "citation_validity": null,
+      "reranker_mode": "none",
+      "is_neural_reranker": false
+    },
+    {
+      "variant_id": "variant_b_dense",
+      "variant_name": "Variant B: Dense Vector Retrieval",
+      "recall_at_1": 0.76,
+      "recall_at_5": 0.98,
+      "ndcg_at_5": 0.9249,
+      "recall_at_10": 0.98,
+      "precision_at_5": 0.248,
+      "mrr": 0.9333,
+      "ndcg_at_10": 0.9249,
+      "dimension_coverage": 0.8913,
+      "avg_latency_ms": 182.6024,
+      "claim_support_rate": null,
+      "citation_coverage": null,
+      "citation_validity": null,
+      "reranker_mode": "none",
+      "is_neural_reranker": false
+    },
+    {
+      "variant_id": "variant_c_hybrid",
+      "variant_name": "Variant C: Hybrid Retrieval (BM25 + Dense)",
+      "recall_at_1": 0.86,
+      "recall_at_5": 0.96,
+      "ndcg_at_5": 0.9641,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.24,
+      "mrr": 1.0,
+      "ndcg_at_10": 0.9797,
+      "dimension_coverage": 0.8913,
+      "avg_latency_ms": 90.8304,
+      "claim_support_rate": null,
+      "citation_coverage": null,
+      "citation_validity": null,
+      "reranker_mode": "none",
+      "is_neural_reranker": false
+    },
+    {
+      "variant_id": "variant_d_hybrid_reranker",
+      "variant_name": "Variant D: Hybrid + Cross-Encoder Reranker",
+      "recall_at_1": 0.86,
+      "recall_at_5": 1.0,
+      "ndcg_at_5": 0.9936,
+      "recall_at_10": 1.0,
+      "precision_at_5": 0.256,
+      "mrr": 1.0,
+      "ndcg_at_10": 0.9936,
+      "dimension_coverage": 0.8913,
+      "avg_latency_ms": 5629.7984,
+      "claim_support_rate": null,
+      "citation_coverage": null,
+      "citation_validity": null,
+      "reranker_mode": "neural_loaded (cross-encoder/ms-marco-MiniLM-L-6-v2)",
+      "is_neural_reranker": true
+    }
+  ]
+}

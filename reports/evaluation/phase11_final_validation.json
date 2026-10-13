@@ -1,0 +1,121 @@
+{
+  "phase": "11",
+  "date": "2026-10-10",
+  "final_status": "PASS_WITH_LIMITATIONS",
+  "environment": {
+    "embedding": {
+      "model": "all-MiniLM-L6-v2",
+      "dimension": 384,
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "is_mock": false
+    },
+    "reranker": {
+      "model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+      "device": "cpu",
+      "neural": true
+    },
+    "llm": {
+      "provider": "gemini",
+      "model": "gemini-3.5-flash-lite",
+      "real_requests_this_phase": 1
+    },
+    "index": {
+      "generation_id": "gen-20261010T080354Z-16e621",
+      "documents": 41,
+      "chunks": 41
+    }
+  },
+  "tests": {
+    "backend": {
+      "command": "cd backend; python -m pytest -p no:cacheprovider -q",
+      "passed": 325,
+      "failed": 0,
+      "skipped": 4,
+      "warnings": 42,
+      "seconds": 179.6,
+      "opt_in_real_model_tests": {
+        "passed": 4
+      }
+    },
+    "frontend": {
+      "typecheck": "clean",
+      "build": "success",
+      "vitest_passed": 10
+    },
+    "security_focused": {
+      "passed": 93
+    }
+  },
+  "benchmark": {
+    "queries": 25,
+    "documents": 41,
+    "chunks": 41,
+    "dataset_sha256": "f0804b3532f6a248256568c3442bd39b0166cc92b332f3a38ee9b4c8bcf3e062",
+    "variants": {
+      "bm25": {
+        "R@1": 0.86,
+        "R@5": 0.94,
+        "R@10": 0.96,
+        "P@5": 0.232,
+        "MRR": 1.0,
+        "NDCG@5": 0.954,
+        "NDCG@10": 0.962
+      },
+      "dense": {
+        "R@1": 0.76,
+        "R@5": 0.98,
+        "R@10": 0.98,
+        "P@5": 0.248,
+        "MRR": 0.933,
+        "NDCG@5": 0.925,
+        "NDCG@10": 0.925
+      },
+      "hybrid": {
+        "R@1": 0.86,
+        "R@5": 0.96,
+        "R@10": 1.0,
+        "P@5": 0.24,
+        "MRR": 1.0,
+        "NDCG@5": 0.964,
+        "NDCG@10": 0.98
+      },
+      "hybrid_rerank": {
+        "R@1": 0.86,
+        "R@5": 1.0,
+        "R@10": 1.0,
+        "P@5": 0.256,
+        "MRR": 1.0,
+        "NDCG@5": 0.994,
+        "NDCG@10": 0.994
+      }
+    },
+    "caveat": "small corpus; labels written for 7 documents; not evidence of general retrieval quality"
+  },
+  "gemini_real_run": {
+    "status": "PASS",
+    "latency_ms": 20456.3,
+    "llm_calls": 1,
+    "evidence_passages": 5,
+    "claims": 7,
+    "citations": 2,
+    "structural_verification_valid": true,
+    "semantic_entailment_checked": false,
+    "manual_review": {
+      "claims_reviewed": 7,
+      "judged_supported": 7,
+      "reviewer": "single, not independent"
+    }
+  },
+  "latency_ms": {
+    "embedding_init": 1412.6,
+    "reranker_init": 323.5,
+    "reranker_warm_25_pairs_p50": 4619.6,
+    "reranker_warm_25_pairs_p95": 6158.6,
+    "api_first_request_cold_mock_llm": 57752.3,
+    "api_warm_p50_mock_llm": 4173.2,
+    "api_warm_p95_mock_llm": 8785.5,
+    "samples": "n=7-10; single machine"
+  },
+  "defects_fixed": [],
+  "limitations_ref": "phase11_final_validation.md sections 9-10"
+}

@@ -1,0 +1,493 @@
+{
+  "question": "Compare dense passage retrieval with BM25 keyword search and explain why retrieval is used before generation in retrieval-augmented generation.",
+  "summary": "Dense Passage Retrieval (DPR) uses dual-encoder BERT models to map queries and passages into a shared vector space, outperforming traditional sparse lexical BM25 retrieval methods by capturing semantic relevance. Retrieval is integrated before generation in Retrieval-Augmented Generation (RAG) to address limitations of pure parametric models—such as the inability to dynamically update knowledge, generation of hallucinations, and lack of verifiable citations—by supplying external, factual document context.",
+  "sections": [
+    {
+      "title": "Comparison of Dense Passage Retrieval (DPR) and BM25",
+      "claims": [
+        {
+          "claim_id": "claim_001",
+          "text": "Traditional sparse lexical retrieval systems like BM25 are commonly used to identify candidate passages from large corpora or Wikipedia.",
+          "evidence_ids": [
+            "evidence_001"
+          ],
+          "citation_ids": [
+            "cite_1"
+          ],
+          "support_status": "SUPPORTED"
+        },
+        {
+          "claim_id": "claim_002",
+          "text": "Dense Passage Retrieval (DPR) utilizes a dual-encoder architecture with two separate BERT encoders—a Question Encoder and a Passage Encoder—to map queries and passages into a 768-dimensional space, scoring relevance via dot product.",
+          "evidence_ids": [
+            "evidence_001"
+          ],
+          "citation_ids": [
+            "cite_1"
+          ],
+          "support_status": "SUPPORTED"
+        },
+        {
+          "claim_id": "claim_001_perf",
+          "text": "DPR significantly outperforms BM25, achieving a top-20 passage retrieval accuracy of 78.4% on Natural Questions compared to BM25's 59.1%.",
+          "evidence_ids": [
+            "evidence_001"
+          ],
+          "citation_ids": [
+            "cite_1"
+          ],
+          "support_status": "SUPPORTED"
+        },
+        {
+          "claim_id": "claim_003",
+          "text": "Combining BM25 and DPR in a hybrid retrieval setup yields superior recall across heterogeneous query distributions.",
+          "evidence_ids": [
+            "evidence_001"
+          ],
+          "citation_ids": [
+            "cite_1"
+          ],
+          "support_status": "SUPPORTED"
+        }
+      ]
+    },
+    {
+      "title": "Role of Retrieval in Retrieval-Augmented Generation (RAG)",
+      "claims": [
+        {
+          "claim_id": "claim_004",
+          "text": "Large pre-trained language models store substantial factual knowledge in their neural weights, but suffer from fundamental limitations including an inability to update knowledge dynamically, hallucinations when uncertain, and a lack of verifiable citations.",
+          "evidence_ids": [
+            "evidence_002"
+          ],
+          "citation_ids": [
+            "cite_2"
+          ],
+          "support_status": "SUPPORTED"
+        },
+        {
+          "claim_id": "claim_005",
+          "text": "Retrieval-Augmented Generation (RAG) pairs a sequence-to-sequence model with a dense vector retriever over an external document index to overcome these shortcomings.",
+          "evidence_ids": [
+            "evidence_002"
+          ],
+          "citation_ids": [
+            "cite_2"
+          ],
+          "support_status": "SUPPORTED"
+        },
+        {
+          "claim_id": "claim_006",
+          "text": "RAG models produce more factual, specific, and diverse responses than pure parametric models while allowing non-parametric knowledge indices to be swapped without retraining the generator.",
+          "evidence_ids": [
+            "evidence_002"
+          ],
+          "citation_ids": [
+            "cite_2"
+          ],
+          "support_status": "SUPPORTED"
+        }
+      ]
+    }
+  ],
+  "claims": [
+    {
+      "claim_id": "claim_001",
+      "text": "Traditional sparse lexical retrieval systems like BM25 are commonly used to identify candidate passages from large corpora or Wikipedia.",
+      "evidence_ids": [
+        "evidence_001"
+      ],
+      "citation_ids": [
+        "cite_1"
+      ],
+      "support_status": "SUPPORTED"
+    },
+    {
+      "claim_id": "claim_002",
+      "text": "Dense Passage Retrieval (DPR) utilizes a dual-encoder architecture with two separate BERT encoders—a Question Encoder and a Passage Encoder—to map queries and passages into a 768-dimensional space, scoring relevance via dot product.",
+      "evidence_ids": [
+        "evidence_001"
+      ],
+      "citation_ids": [
+        "cite_1"
+      ],
+      "support_status": "SUPPORTED"
+    },
+    {
+      "claim_id": "claim_003",
+      "text": "Combining BM25 and DPR in a hybrid retrieval setup yields superior recall across heterogeneous query distributions.",
+      "evidence_ids": [
+        "evidence_001"
+      ],
+      "citation_ids": [
+        "cite_1"
+      ],
+      "support_status": "SUPPORTED"
+    },
+    {
+      "claim_id": "claim_004",
+      "text": "Large pre-trained language models store substantial factual knowledge in their neural weights, but suffer from fundamental limitations including an inability to update knowledge dynamically, hallucinations when uncertain, and a lack of verifiable citations.",
+      "evidence_ids": [
+        "evidence_002"
+      ],
+      "citation_ids": [
+        "cite_2"
+      ],
+      "support_status": "SUPPORTED"
+    },
+    {
+      "claim_id": "claim_005",
+      "text": "Retrieval-Augmented Generation (RAG) pairs a sequence-to-sequence model with a dense vector retriever over an external document index to overcome these shortcomings.",
+      "evidence_ids": [
+        "evidence_002"
+      ],
+      "citation_ids": [
+        "cite_2"
+      ],
+      "support_status": "SUPPORTED"
+    },
+    {
+      "claim_id": "claim_006",
+      "text": "RAG models produce more factual, specific, and diverse responses than pure parametric models while allowing non-parametric knowledge indices to be swapped without retraining the generator.",
+      "evidence_ids": [
+        "evidence_002"
+      ],
+      "citation_ids": [
+        "cite_2"
+      ],
+      "support_status": "SUPPORTED"
+    },
+    {
+      "claim_id": "claim_001_perf",
+      "text": "DPR significantly outperforms BM25, achieving a top-20 passage retrieval accuracy of 78.4% on Natural Questions compared to BM25's 59.1%.",
+      "evidence_ids": [
+        "evidence_001"
+      ],
+      "citation_ids": [
+        "cite_1"
+      ],
+      "support_status": "SUPPORTED"
+    }
+  ],
+  "citations": [
+    {
+      "citation_id": "cite_1",
+      "number": 1,
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "source_type": "arxiv",
+      "source_id": "2004.04906",
+      "authors": [
+        "Vladimir Karpukhin",
+        "Barlas Oğuz",
+        "Sewon Min",
+        "Patrick Lewis",
+        "Ledell Wu",
+        "Sergey Edunov",
+        "Danqi Chen",
+        "Wen-tau Yih"
+      ],
+      "publication_date": "2020",
+      "url": "https://arxiv.org/abs/2004.04906",
+      "doi": null,
+      "arxiv_id": null,
+      "evidence_id": "evidence_001",
+      "formatted_citation": "[1] Vladimir Karpukhin et al., \"Dense Passage Retrieval for Open-Domain Question Answering\" (2020), arXiv:2004.04906. <https://arxiv.org/abs/2004.04906>"
+    },
+    {
+      "citation_id": "cite_2",
+      "number": 2,
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "source_type": "arxiv",
+      "source_id": "2005.11401",
+      "authors": [
+        "Patrick Lewis",
+        "Ethan Perez",
+        "Aleksandra Piktus",
+        "Fabio Petroni",
+        "Vladimir Karpukhin",
+        "Naman Goyal",
+        "Heinrich Küttler",
+        "Mike Lewis",
+        "Wen-tau Yih",
+        "Tim Rocktäschel",
+        "Sebastian Riedel",
+        "Douwe Kiela"
+      ],
+      "publication_date": "2020",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "doi": null,
+      "arxiv_id": null,
+      "evidence_id": "evidence_002",
+      "formatted_citation": "[2] Patrick Lewis et al., \"Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks\" (2020), arXiv:2005.11401. <https://arxiv.org/abs/2005.11401>"
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "2004.04906",
+      "source_type": "arxiv",
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "url": "https://arxiv.org/abs/2004.04906",
+      "evidence_count": 1
+    },
+    {
+      "source_id": "2005.11401",
+      "source_type": "arxiv",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "evidence_count": 1
+    }
+  ],
+  "evidence": [
+    {
+      "evidence_id": "evidence_001",
+      "passage_id": "fe55d658-43c7-5e48-ab84-9b320f631aa9",
+      "document_id": "b258e13e-b8c5-586e-85d0-67ed95378759",
+      "title": "Dense Passage Retrieval for Open-Domain Question Answering",
+      "source_type": "arxiv",
+      "source_id": "2004.04906",
+      "url": "https://arxiv.org/abs/2004.04906",
+      "text": "Open-domain question answering (QA) traditionally relies on sparse lexical retrieval systems like BM25 to identify candidate passages from Wikipedia or large text corpora. Dense Passage Retrieval (DPR) shows that dense embeddings learned via a dual-encoder architecture can substantially outperform BM25. DPR utilizes two separate BERT encoders: a Question Encoder that maps input queries into a 768-dimensional space, and a Passage Encoder that maps text passages into the same vector space. Relevance scoring is computed via the dot product of the query and passage vectors. Trained using in-batch negatives and hard negative mining, DPR achieves a top-20 passage retrieval accuracy of 78.4% on Natural Questions, compared to 59.1% for BM25. Furthermore, combining BM25 and DPR in a hybrid retrieval setup yields superior recall across heterogeneous query distributions.",
+      "relevance_score": 5.7075,
+      "rank": 1,
+      "chunk_index": 0,
+      "authors": [
+        "Vladimir Karpukhin",
+        "Barlas Oğuz",
+        "Sewon Min",
+        "Patrick Lewis",
+        "Ledell Wu",
+        "Sergey Edunov",
+        "Danqi Chen",
+        "Wen-tau Yih"
+      ],
+      "publication_date": "2020"
+    },
+    {
+      "evidence_id": "evidence_002",
+      "passage_id": "8941e099-5ada-5cc1-a20d-f92e6355c8ae",
+      "document_id": "899141e1-bb0e-5736-a457-2295e4e8ec8f",
+      "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+      "source_type": "arxiv",
+      "source_id": "2005.11401",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "text": "Large pre-trained language models store substantial factual knowledge within their neural weights. However, they suffer from fundamental limitations: inability to update knowledge dynamically, hallucinations when uncertain, and lack of verifiable citations. Retrieval-Augmented Generation (RAG) addresses these shortcomings by pairing a pre-trained sequence-to-sequence model with a dense vector retriever over an external document index. In RAG-Sequence models, the same retrieved passage is used to generate the complete sequence. In RAG-Token models, different passages can be attended to for generating each token. Empirical evaluations across Open-Domain Question Answering (Natural Questions, TriviaQA, WebQuestions) demonstrate that RAG models establish new state-of-the-art results, generating more factual, specific, and diverse responses than pure parametric models while allowing non-parametric knowledge indices to be swapped without retraining the generator.",
+      "relevance_score": 0.3025,
+      "rank": 2,
+      "chunk_index": 0,
+      "authors": [
+        "Patrick Lewis",
+        "Ethan Perez",
+        "Aleksandra Piktus",
+        "Fabio Petroni",
+        "Vladimir Karpukhin",
+        "Naman Goyal",
+        "Heinrich Küttler",
+        "Mike Lewis",
+        "Wen-tau Yih",
+        "Tim Rocktäschel",
+        "Sebastian Riedel",
+        "Douwe Kiela"
+      ],
+      "publication_date": "2020"
+    },
+    {
+      "evidence_id": "evidence_003",
+      "passage_id": "c554c9e0-d7c2-521c-9b62-5767ced378df",
+      "document_id": "d5ea661f-5cc3-596c-a78d-f96c2f66d735",
+      "title": "Reciprocal Rank Fusion Outperforms Condorcet and Individual Rank Learning Methods",
+      "source_type": "arxiv",
+      "source_id": "0905.0001",
+      "url": "https://arxiv.org/abs/0905.0001",
+      "text": "Combining results from diverse search systems often yields significant improvements in retrieval effectiveness over any individual ranking method. Reciprocal Rank Fusion (RRF) is an effective, parameter-light method that assigns scores based on the reciprocal of the document rank: RRF_score(d) = sum(1 / (k + r(d))), where r(d) is the rank of document d in a given run, and k is a smoothing constant typically set to 60. RRF does not require score normalization or calibration across disparate retrieval models, making it ideal for fusing lexical search (e.g. BM25) and dense vector search (e.g. bi-encoder embeddings).",
+      "relevance_score": 0.0553,
+      "rank": 3,
+      "chunk_index": 0,
+      "authors": [
+        "Gordon V. Cormack",
+        "Charles L. A. Clarke",
+        "Stefan Buettcher"
+      ],
+      "publication_date": "2009"
+    },
+    {
+      "evidence_id": "evidence_004",
+      "passage_id": "1316ea35-6a64-55a2-b8d2-143ae0091628",
+      "document_id": "79736ef8-6b2d-532f-9750-fa5eab8a251e",
+      "title": "Attention Is All You Need",
+      "source_type": "arxiv",
+      "source_id": "1706.03762",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "text": "The Transformer architecture replaces recurrent neural networks (RNNs) and convolutional networks with multi-head self-attention mechanisms. Recurrent models process sequences sequentially, preventing parallelization across training examples. In contrast, the Transformer computes scaled dot-product attention across all positions simultaneously: Attention(Q, K, V) = softmax(Q K^T / sqrt(d_k)) V. Multi-Head Attention allows the model to jointly attend to information from different representation subspaces at different positions. Combined with sinusoidal positional encodings, layer normalization, and residual connections, the Transformer achieves superior translation quality (28.4 BLEU on WMT 2014 English-to-German) while training significantly faster than recurrent baselines.",
+      "relevance_score": -9.3067,
+      "rank": 4,
+      "chunk_index": 0,
+      "authors": [
+        "Ashish Vaswani",
+        "Noam Shazeer",
+        "Niki Parmar",
+        "Jakob Uszkoreit",
+        "Llion Jones",
+        "Aidan N. Gomez",
+        "Lukasz Kaiser",
+        "Illia Polosukhin"
+      ],
+      "publication_date": "2017"
+    },
+    {
+      "evidence_id": "evidence_005",
+      "passage_id": "b9debfde-60b6-53e8-9a64-d8bfeb3ee265",
+      "document_id": "1df382cb-ec52-5cd5-ae62-2507f1a52e82",
+      "title": "Listwise Cross-Encoder Fine-Tuning vs. Agentic Instruction Tuning for LLM Rerankers: A Systematic Study in Medical Procedure Reranking",
+      "source_type": "arxiv",
+      "source_id": "2608.09650",
+      "url": "https://arxiv.org/abs/2608.09650v1",
+      "text": "Reranking medical procedures against patient queries is a critical component of health insurance information retrieval, complicated by a substantial lexical gap between patient language and clinical nomenclature. We present a systematic comparison of two reranking paradigms for this production task: (1) small cross-encoders (MedCPT, MiniLM-L12) fine-tuned with listwise learning-to-rank objectives across layer freezing configurations, and (2) Qwen3-Reranker-4B, a 4B-parameter instruction reranker whose prompt is iteratively refined via an agentic optimization loop driven by GPT-4.1. On a purpose-built dataset of 2,647 queries across 708 insurance services, we find that a 109M-parameter cross-encoder fine-tuned with ListNet outperforms the 4B-parameter model by 2.6 percentage points on NDCG@3 and 13.3 points on Spearman correlation - at 37x fewer parameters. We report practical findings, a scalable LLM based dataset construction pipeline, and deployment trade-offs relevant to production reranking systems. We release our code and a sample dataset to support reproducibility and adaptation to other domains.",
+      "relevance_score": -9.479,
+      "rank": 5,
+      "chunk_index": 0,
+      "authors": [
+        "Matan Fainzilber",
+        "Shlomit Plavner"
+      ],
+      "publication_date": "2026-08-10"
+    }
+  ],
+  "limitations": [
+    "The retrieved evidence focuses primarily on Open-Domain QA datasets (such as Natural Questions, TriviaQA, and WebQuestions) and may not generalize identically to all domains without adaptation.",
+    "Specific edge cases of hybrid retrieval weightings or token-versus-sequence generation tradeoffs are only briefly detailed."
+  ],
+  "verification": {
+    "valid": true,
+    "errors": [],
+    "warnings": [],
+    "unsupported_claim_ids": [],
+    "verified_claim_count": 7,
+    "total_claim_count": 7,
+    "grounding_rate": 1.0,
+    "verification_method": "structural_evidence_id_check",
+    "semantic_entailment_checked": false
+  },
+  "metadata": {
+    "provider": "gemini",
+    "model": "gemini-3.5-flash-lite",
+    "planning_latency_ms": 15258.72,
+    "retrieval_latency_ms": 15246.32,
+    "generation_latency_ms": 4061.0,
+    "verification_latency_ms": 0.08,
+    "total_latency_ms": 20455.54,
+    "input_tokens": 2011,
+    "output_tokens": 1214,
+    "total_tokens": 3225,
+    "claim_count": 7,
+    "supported_claim_count": 7,
+    "partially_supported_claim_count": 0,
+    "unsupported_claim_count": 0,
+    "query_analysis": {
+      "original_query": "Compare dense passage retrieval with BM25 keyword search and explain why retrieval is used before generation in retrieval-augmented generation.",
+      "intent": "COMPARATIVE",
+      "complexity": "COMPLEX",
+      "requires_decomposition": true,
+      "entities": [
+        "BM25",
+        "Compare dense passage retrieval with BM25 keyword search and explain why retrieval is used before generation in retrieval",
+        "augmented generation"
+      ],
+      "concepts": [],
+      "constraints": [],
+      "time_constraints": [],
+      "source_requirements": [],
+      "confidence": 0.95
+    },
+    "research_plan": {
+      "subquery_count": 3,
+      "strategy": "dependency_aware",
+      "subqueries": [
+        {
+          "subquery_id": "sq_001",
+          "text": "dense passage retrieval architectures mechanisms and retrieval strengths",
+          "purpose": "Understand dense passage retrieval architecture, mechanisms, and advantages",
+          "intent": "EXPLANATORY",
+          "priority": 1,
+          "dependencies": []
+        },
+        {
+          "subquery_id": "sq_002",
+          "text": "BM25 keyword search architectures mechanisms and retrieval strengths",
+          "purpose": "Understand BM25 keyword search architecture, mechanisms, and advantages",
+          "intent": "EXPLANATORY",
+          "priority": 1,
+          "dependencies": []
+        },
+        {
+          "subquery_id": "sq_003",
+          "text": "dense passage retrieval vs BM25 keyword search comparative evaluation trade-offs benchmark performance",
+          "purpose": "Compare performance, trade-offs, and benchmarks between dense passage retrieval and BM25 keyword search",
+          "intent": "COMPARATIVE",
+          "priority": 1,
+          "dependencies": [
+            "sq_001",
+            "sq_002"
+          ]
+        }
+      ]
+    },
+    "retrieval": {
+      "subqueries": 3,
+      "subqueries_with_evidence": 3,
+      "coverage": 1.0,
+      "unique_sources": 5,
+      "unique_documents": 5,
+      "failed_subqueries": []
+    }
+  },
+  "insufficient_evidence": false,
+  "query_analysis": {
+    "original_query": "Compare dense passage retrieval with BM25 keyword search and explain why retrieval is used before generation in retrieval-augmented generation.",
+    "intent": "COMPARATIVE",
+    "complexity": "COMPLEX",
+    "requires_decomposition": true,
+    "entities": [
+      "BM25",
+      "Compare dense passage retrieval with BM25 keyword search and explain why retrieval is used before generation in retrieval",
+      "augmented generation"
+    ],
+    "concepts": [],
+    "constraints": [],
+    "time_constraints": [],
+    "source_requirements": [],
+    "confidence": 0.95
+  },
+  "research_plan": {
+    "subquery_count": 3,
+    "strategy": "dependency_aware",
+    "subqueries": [
+      {
+        "subquery_id": "sq_001",
+        "text": "dense passage retrieval architectures mechanisms and retrieval strengths",
+        "purpose": "Understand dense passage retrieval architecture, mechanisms, and advantages",
+        "intent": "EXPLANATORY",
+        "priority": 1,
+        "dependencies": []
+      },
+      {
+        "subquery_id": "sq_002",
+        "text": "BM25 keyword search architectures mechanisms and retrieval strengths",
+        "purpose": "Understand BM25 keyword search architecture, mechanisms, and advantages",
+        "intent": "EXPLANATORY",
+        "priority": 1,
+        "dependencies": []
+      },
+      {
+        "subquery_id": "sq_003",
+        "text": "dense passage retrieval vs BM25 keyword search comparative evaluation trade-offs benchmark performance",
+        "purpose": "Compare performance, trade-offs, and benchmarks between dense passage retrieval and BM25 keyword search",
+        "intent": "COMPARATIVE",
+        "priority": 1,
+        "dependencies": [
+          "sq_001",
+          "sq_002"
+        ]
+      }
+    ]
+  }
+}

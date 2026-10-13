@@ -1,0 +1,34 @@
+{
+  "phase": "8.5",
+  "sub_test": "gemini_quota_efficient_validation",
+  "timestamp": "2026-10-01T19:35:26.024168+00:00",
+  "overall": "PASS",
+  "call_1_smoke": {
+    "status": "PASS",
+    "latency_ms": 4855.4,
+    "parsed": {
+      "status": "ok",
+      "message": "Gemini is alive"
+    },
+    "error": null
+  },
+  "call_2_grounded": {
+    "status": "PASS",
+    "latency_ms": 1520.8,
+    "summary": "Retrieval-augmented generation (RAG) is an approach that combines a pre-trained parametric sequence-to-sequence model with a non-parametric memory such as a dense passage index. Before generation, the model uses a dense retriever to retrieve relevant documents for each input, allowing it to condition the generation process on those retrieved documents.",
+    "claims_total": 2,
+    "claims_grounded": 2,
+    "claims_ungrounded": 0,
+    "grounding_rate": 1.0,
+    "error": null
+  },
+  "truth_table": {
+    "gemini_api_connected": "PASS",
+    "real_gemini_generation": "PASS",
+    "grounded_gemini_answer": "PASS",
+    "grounding_rate": "100%",
+    "fabrication_detected": "NO"
+  },
+  "total_api_calls": 2,
+  "pace_seconds": 15
+}

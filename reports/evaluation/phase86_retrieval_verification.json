@@ -1,0 +1,361 @@
+{
+  "phase": "8.6",
+  "timestamp": "2026-10-10T06:30:42.726220+00:00",
+  "overall": "PASS",
+  "embedding": {
+    "provider": "sentence_transformers",
+    "model_name": "all-MiniLM-L6-v2",
+    "dimension": 384,
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "normalized": true,
+    "is_mock": false
+  },
+  "index_generation": "gen-20261010T062446Z-34c4e8",
+  "documents": 7,
+  "chunks": 7,
+  "reranker_model": "cross-encoder/ms-marco-MiniLM-L-6-v2",
+  "reranker_mode": "neural",
+  "dense_score_max_abs_error": 6.413309183717075e-08,
+  "checks": [
+    {
+      "check": "manifest is complete & real",
+      "passed": true,
+      "detail": "model=all-MiniLM-L6-v2 dim=384"
+    },
+    {
+      "check": "deep integrity (bm25==qdrant ids, vectors valid, tags)",
+      "passed": true,
+      "detail": "docs=7 chunks=7"
+    },
+    {
+      "check": "BM25 results carry lexical scores from active generation",
+      "passed": true,
+      "detail": "top1 5/5"
+    },
+    {
+      "check": "dense scores == cosine(stored vector, real query embedding)",
+      "passed": true,
+      "detail": "max|err|=6.41e-08; top1 5/5"
+    },
+    {
+      "check": "dense metadata reports real embedder + generation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "check": "hybrid fuses both rankings",
+      "passed": true,
+      "detail": "top1 5/5"
+    },
+    {
+      "check": "neural cross-encoder loaded (not fallback)",
+      "passed": true,
+      "detail": "cross-encoder/ms-marco-MiniLM-L-6-v2"
+    },
+    {
+      "check": "rerank scores are model logits, no fallback flag",
+      "passed": true,
+      "detail": "top1 5/5"
+    },
+    {
+      "check": "mock provider rejected by real index",
+      "passed": true,
+      "detail": "embedding_model_mismatch"
+    }
+  ],
+  "per_query": [
+    {
+      "query": "What is retrieval-augmented generation?",
+      "gold": "2005.11401",
+      "bm25_top": [
+        [
+          "2005.11401",
+          7.6327
+        ],
+        [
+          "2004.04906",
+          1.4807
+        ],
+        [
+          "0905.0001",
+          1.3151
+        ]
+      ],
+      "dense_top": [
+        [
+          "2005.11401",
+          0.4663
+        ],
+        [
+          "0905.0001",
+          0.3603
+        ],
+        [
+          "2004.04906",
+          0.3388
+        ]
+      ],
+      "hybrid_top": [
+        [
+          "2005.11401",
+          0.032787
+        ],
+        [
+          "2004.04906",
+          0.032002
+        ],
+        [
+          "0905.0001",
+          0.032002
+        ]
+      ],
+      "rerank_top": [
+        [
+          "2005.11401",
+          7.157
+        ],
+        [
+          "2004.04906",
+          -6.657
+        ],
+        [
+          "0905.0001",
+          -7.399
+        ]
+      ]
+    },
+    {
+      "query": "dual encoder dense passage retrieval for question answering",
+      "gold": "2004.04906",
+      "bm25_top": [
+        [
+          "2004.04906",
+          14.8936
+        ],
+        [
+          "2005.11401",
+          5.5182
+        ],
+        [
+          "0905.0001",
+          3.0049
+        ]
+      ],
+      "dense_top": [
+        [
+          "2004.04906",
+          0.7104
+        ],
+        [
+          "2005.11401",
+          0.5822
+        ],
+        [
+          "0905.0001",
+          0.4771
+        ]
+      ],
+      "hybrid_top": [
+        [
+          "2004.04906",
+          0.032787
+        ],
+        [
+          "2005.11401",
+          0.032258
+        ],
+        [
+          "0905.0001",
+          0.031746
+        ]
+      ],
+      "rerank_top": [
+        [
+          "2004.04906",
+          8.953
+        ],
+        [
+          "2005.11401",
+          2.186
+        ],
+        [
+          "0905.0001",
+          -3.725
+        ]
+      ]
+    },
+    {
+      "query": "self-attention without recurrence",
+      "gold": "1706.03762",
+      "bm25_top": [
+        [
+          "1706.03762",
+          8.1693
+        ],
+        [
+          "2005.11401",
+          1.3749
+        ]
+      ],
+      "dense_top": [
+        [
+          "1706.03762",
+          0.4229
+        ],
+        [
+          "2005.11401",
+          0.2967
+        ],
+        [
+          "2004.04906",
+          0.2214
+        ]
+      ],
+      "hybrid_top": [
+        [
+          "1706.03762",
+          0.032787
+        ],
+        [
+          "2005.11401",
+          0.032258
+        ],
+        [
+          "2004.04906",
+          0.015873
+        ]
+      ],
+      "rerank_top": [
+        [
+          "1706.03762",
+          0.177
+        ],
+        [
+          "2005.11401",
+          -10.312
+        ],
+        [
+          "2608.09650",
+          -11.258
+        ]
+      ]
+    },
+    {
+      "query": "siamese BERT sentence embeddings",
+      "gold": "1908.10084",
+      "bm25_top": [
+        [
+          "1908.10084",
+          11.2557
+        ],
+        [
+          "2004.04906",
+          2.6317
+        ],
+        [
+          "0905.0001",
+          0.9364
+        ]
+      ],
+      "dense_top": [
+        [
+          "1908.10084",
+          0.6806
+        ],
+        [
+          "2004.04906",
+          0.4615
+        ],
+        [
+          "2005.11401",
+          0.4289
+        ]
+      ],
+      "hybrid_top": [
+        [
+          "1908.10084",
+          0.032787
+        ],
+        [
+          "2004.04906",
+          0.032258
+        ],
+        [
+          "0905.0001",
+          0.031498
+        ]
+      ],
+      "rerank_top": [
+        [
+          "1908.10084",
+          7.422
+        ],
+        [
+          "2004.04906",
+          -3.537
+        ],
+        [
+          "0905.0001",
+          -11.056
+        ]
+      ]
+    },
+    {
+      "query": "reciprocal rank fusion",
+      "gold": "0905.0001",
+      "bm25_top": [
+        [
+          "0905.0001",
+          9.4753
+        ],
+        [
+          "2608.09650",
+          1.514
+        ]
+      ],
+      "dense_top": [
+        [
+          "0905.0001",
+          0.5274
+        ],
+        [
+          "2608.09650",
+          0.274
+        ],
+        [
+          "1706.03762",
+          0.1849
+        ]
+      ],
+      "hybrid_top": [
+        [
+          "0905.0001",
+          0.032787
+        ],
+        [
+          "2608.09650",
+          0.032258
+        ],
+        [
+          "1706.03762",
+          0.015873
+        ]
+      ],
+      "rerank_top": [
+        [
+          "0905.0001",
+          9.578
+        ],
+        [
+          "1706.03762",
+          -10.683
+        ],
+        [
+          "2004.04906",
+          -10.783
+        ]
+      ]
+    }
+  ],
+  "note": "5 smoke queries over a 7-chunk corpus; a wiring/identity check, not a quality benchmark."
+}
